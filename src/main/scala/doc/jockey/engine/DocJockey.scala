@@ -1,7 +1,7 @@
 package doc.jockey.engine
 
-import doc.jockey.model.Summary
+import doc.jockey.model.{Command, Summary}
 
-class DocJockey {
+class DocJockey(commands: Seq[Command]) {
   def execute: Summary = new Summary
 }

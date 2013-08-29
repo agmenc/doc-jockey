@@ -4,7 +4,7 @@ import Keys._
 object Build extends Build {
 
   def sharedSettings = Seq(
-//    scalaVersion:= "2.10.2",
+    scalaVersion:= "2.10.2",
     scalacOptions += "-deprecation",
     libraryDependencies ++= {
       Seq(

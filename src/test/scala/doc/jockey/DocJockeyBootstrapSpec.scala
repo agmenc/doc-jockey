@@ -1,8 +1,8 @@
 package doc.jockey
 
-import example.project.dj.SupportedProductTypes
-import example.project.main.{LchScm, LchFcm}
+import example.project.main.{TradeClearingEngine, LchScm, LchFcm}
 import org.scalatest.WordSpec
+import example.project.dj.clearing.{AutoAccept, NoLimits, SupportedProductTypes}
 
 class DocJockeyBootstrapSpec extends WordSpec with DocJockeySpec {
 
@@ -12,19 +12,19 @@ class DocJockeyBootstrapSpec extends WordSpec with DocJockeySpec {
 
   // GENERATED CODE - DO NOT EDIT (unless you REALLY know what you are doing)
   "This DocJockey test" in {
-    import example.project.dj.TradeWorkflow._
+    system(new TradeClearingEngine())
 
     // |no limits|auto accept|
-    command(noLimits(), autoAccept())
+    commands(NoLimits(), AutoAccept())
 
     // |Supported Product Types|
-    // |Description|Clearing House|Vanilla|FRA  |VNS  |
-    // |desc       |LCH-FCM       |tick   |cross|tick |
-    // |desc       |LCH-FCM       |tick   |tick |cross|
-    table(supportedProductTypes(settings = None, rows =
-      SupportedProductTypes.row("desc", LchFcm, true, false, true),
-      SupportedProductTypes.row("desc", LchScm, true, true, false)
-    ))
+    // |Description|Clearing House|Vanilla| FRA | VNS |
+    // |desc       |LCH-FCM       |   ✓   |  -  |  ✓  |
+    // |desc       |LCH-FCM       |   ✓   |  ✓  |  -  |
+    table(SupportedProductTypes,
+      row("desc", "LCH-FCM", "Yes", "-", "Yes"),
+      row("desc", "LCH-SCM", "Yes", "Yes", "-")
+    )
 
     // |pass|fail|exception|
     // |  22|   0|        0|
