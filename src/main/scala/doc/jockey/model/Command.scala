@@ -1,3 +1,5 @@
 package doc.jockey.model
 
-trait Command
+trait Command {
+  def execute: Summary
+}

@@ -9,7 +9,7 @@ object Build extends Build {
     libraryDependencies ++= {
       Seq(
         "junit" % "junit" % "4.8" % "test->default",
-        "org.scalatest" %% "scalatest" % "1.9.1" % "test"
+        "org.scalatest" %% "scalatest" % "1.9.1"
       )
     }
   )
