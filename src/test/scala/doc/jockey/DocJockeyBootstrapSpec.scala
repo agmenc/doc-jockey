@@ -34,7 +34,6 @@ class DocJockeyBootstrapSpec extends WordSpec with DocJockeySpec {
 
     // |pass|fail|exception|
     // |  22|   0|        0|
-    // TODO - CAS - 30/08/2013 - summary should assert
-    assert(summary.status === Pass)
+    summary
   }
 }
