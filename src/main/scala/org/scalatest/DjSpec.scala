@@ -10,10 +10,12 @@ trait DjSpec extends Suite { thisSuite =>
   private def registerDjSpec(specTitle: String, testFun: () => Unit) =
     registerTest(specTitle, testFun, "noResourceNameRequired", "DjSpec.scala", "noMethodNameRequired", 1, None, None)
 
-  override def testNames = Set("Support for product types by clearing house")
+  override def testNames = atomic.get.testNamesList.toSet
 
+  // Don't do any test method annotation lookups; there isn't a test method.
   override def tags = Map.empty
 
+  // Instead of invoking a test method, wrap the TestLeaf in an anonymous test method
   protected override def runTest(testName: String, reporter: Reporter, stopper: Stopper, configMap: Map[String, Any], tracker: Tracker) {
 
     def invokeWithFixture(theTest: TestLeaf) {
