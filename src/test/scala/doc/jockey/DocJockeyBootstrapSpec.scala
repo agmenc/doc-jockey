@@ -7,10 +7,6 @@ import doc.jockey.model.{Pass, Summary}
 
 class DocJockeyBootstrapSpec extends WordSpec with DocJockeySpec {
 
-  // A renderer, to show this as HTML
-  // A GUI to edit this
-  // A GUI to generate new ones
-
   // Execute a DJ spec and assert that
   //   The spec passes
   //   The output doc is generated
