@@ -10,13 +10,8 @@ import org.scalatest.{Assertions, Suite}
  *  User editing ==> GUI <=3=> Canonical data model <=1=> Code
  *                                        |
  *                                        |=2=> Runnable Spec
- *
- *  (1) Convert from code to model
- *  (2) Execute as ScalaTest
- *  (3) Generate GUI output
  */
-// TODO - CAS - 28/08/2013 - Extend Suite and provide a call like registerTestToRun() in WordSpec, which is called by "in"
-trait DocJockeySpec extends Assertions {
+trait DocJockeyRunner extends Assertions {
   private val commands = ListBuffer[Command]()
 
   // TODO - CAS - 29/08/2013 - we want to extract systems in a type-safe way: system(MyClass.type) = instanceOfMyClass

@@ -1,18 +1,14 @@
 package doc.jockey
 
 import example.project.main.{TradeClearingEngine, LchScm, LchFcm}
-import org.scalatest.WordSpec
+import org.scalatest.{DocJockeySpec, WordSpec}
 import example.project.dj.clearing.{TradeClearingEngine, SupportedProductTypes}
 import doc.jockey.model.{Pass, Summary}
 
-class DocJockeyBootstrapSpec extends WordSpec with DocJockeySpec {
-
-  // Execute a DJ spec and assert that
-  //   The spec passes
-  //   The output doc is generated
+class DocJockeyBootstrapSpec extends DocJockeySpec {
 
   // GENERATED CODE - DO NOT EDIT (unless you REALLY know what you are doing)
-  "DocJockey works" in {
+  specify("DocJockey works") {
 //    subSystem(TradeClearingEngine)
 
     // |no limits|auto accept|

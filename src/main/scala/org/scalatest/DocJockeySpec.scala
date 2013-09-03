@@ -1,8 +1,10 @@
 package org.scalatest
 
-trait DjSpec extends Suite { thisSuite =>
+import doc.jockey.DocJockeyRunner
 
-  private final val engine = new Engine("concurrentWordSpecMod", "WordSpec")
+trait DocJockeySpec extends Suite with DocJockeyRunner { thisSuite =>
+
+  private final val engine = new Engine("DjSpecMod", "DjSpec")
   import engine._
   
   def specify(specTitle: String)(testFun: => Unit) = registerDjSpec(specTitle, testFun _)
