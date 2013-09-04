@@ -3,10 +3,12 @@ package doc.jockey.model
 import org.scalatest.WordSpec
 
 class DataTreeSpec extends WordSpec {
-  "We can build a tree of data to represent a test" in {
-    new Command{
-      def execute = ???
-    }
+  class DummyCommand extends Command {
+    def execute = ???
+  }
+
+  "An executed command generates a summary" in {
+    new DummyCommand().execute
   }
 
   // TODO - CAS - 04/09/2013 - Zippers, anyone?

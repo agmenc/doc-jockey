@@ -1,9 +1,18 @@
 package doc.jockey.model
 
-import doc.jockey.builder.Summary
 
 trait Command {
   def execute: Summary
+}
+
+trait Leaf extends Command
+
+trait Branch extends Command {
+  def children: List[Command]
+}
+
+trait Executed { this: Command =>
+  def result: Summary
 }
 
 /**

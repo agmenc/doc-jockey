@@ -1,4 +1,4 @@
-package doc.jockey.builder
+package doc.jockey.model
 
 case class Summary(pass: Int, fail: Int, exception: Int) {
   def +(that: Summary) = Summary(pass + that.pass, fail + that.fail, exception + that.exception)

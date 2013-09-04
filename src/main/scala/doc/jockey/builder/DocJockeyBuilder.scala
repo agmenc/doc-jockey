@@ -1,6 +1,6 @@
 package doc.jockey.builder
 
-import doc.jockey.model.Command
+import doc.jockey.model.{Pass, Command}
 import scala.collection.mutable.ListBuffer
 import doc.jockey.engine.DocJockey
 import org.scalatest.Assertions
