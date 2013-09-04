@@ -1,6 +1,7 @@
 package example.project.dj.clearing
 
-import doc.jockey.model.{Summary, Command, Table}
+import doc.jockey.model.{Command}
+import doc.jockey.builder.{Table, Summary}
 
 case class SupportedProductTypes(rows: Seq[List[String]]) extends Table {
   def execute = {

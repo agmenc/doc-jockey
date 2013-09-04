@@ -3,7 +3,6 @@ package doc.jockey
 import example.project.main.{TradeClearingEngine, LchScm, LchFcm}
 import org.scalatest.{DocJockeySpec, WordSpec}
 import example.project.dj.clearing.{TradeClearingEngine, SupportedProductTypes}
-import doc.jockey.model.{Pass, Summary}
 
 class DocJockeyBootstrapSpec extends DocJockeySpec {
 
