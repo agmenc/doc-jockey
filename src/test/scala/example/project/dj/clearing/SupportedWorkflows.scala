@@ -1,8 +1,15 @@
 package example.project.dj.clearing
 
 import doc.jockey.model.Command
-import example.project.main.{Workflow, ClearingHouse}
+import example.project.main.{TradeClearingEngine, Workflow, ClearingHouse}
 
-case class SupportedWorkflows(clearingHouse: ClearingHouse, workflows: List[Workflow]) extends Command {
-  def execute = ???
+trait Cell[T] {
+  def data: T
+}
+
+case class Setup[T](data: T) extends Cell[T]
+case class Assert[T](data: T) extends Cell[T]
+
+case class SupportedWorkflows(clearingHouse: Setup[ClearingHouse], workflows: Assert[List[Workflow]]) extends Command {
+  def execute = ??? // new TradeClearingEngine().supportedWorkflows(clearingHouse.data)
 }

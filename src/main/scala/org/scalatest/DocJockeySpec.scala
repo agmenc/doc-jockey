@@ -2,7 +2,7 @@ package org.scalatest
 
 import doc.jockey.builder.DocJockeyBuilder
 
-trait DocJockeySpec extends Suite with DocJockeyBuilder { thisSuite =>
+trait DocJockeySpec extends Suite with DocJockeyBuilder with Assertions { thisSuite =>
 
   private final val engine = new Engine("DjSpecMod", "DjSpec")
   import engine._
@@ -10,7 +10,7 @@ trait DocJockeySpec extends Suite with DocJockeyBuilder { thisSuite =>
   def specify(specTitle: String)(testFun: => Unit) = registerDjSpec(specTitle, testFun _)
 
   private def registerDjSpec(specTitle: String, testFun: () => Unit) =
-    registerTest(specTitle, testFun, "noResourceNameRequired", "DjSpec.scala", "noMethodNameRequired", 1, None, None)
+    registerTest(specTitle, testFun, "noResourceNameRequired", "DocJockeySpec.scala", "noMethodNameRequired", 1, None, None)
 
   override def testNames = atomic.get.testNamesList.toSet
 

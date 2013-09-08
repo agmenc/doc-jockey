@@ -3,7 +3,7 @@ package example.project.dj.clearing
 import doc.jockey.model.{Summary, Command}
 import doc.jockey.builder.{Table}
 
-case class SupportedProductTypes(rows: Seq[List[String]]) extends Table {
+case class SupportedProductTypes(headers: List[String], rows: List[String]*) extends Table {
   def execute = {
     val header :: data = rows.toList
 

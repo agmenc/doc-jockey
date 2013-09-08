@@ -9,6 +9,10 @@ case class Summary(pass: Int, fail: Int, exception: Int) {
   }
 }
 
+object Summary {
+  lazy val empty = Summary(0, 0, 0)
+}
+
 trait SummaryStatus
 case object Pass extends SummaryStatus
 case object Fail extends SummaryStatus

@@ -6,4 +6,6 @@ class TradeClearingEngine {
     case (LchScm, Vns) => Reject
     case _ => Clear
   }
+
+  def supportedWorkflows(clearingHouse: ClearingHouse): List[Workflow] = List(Manual)
 }
