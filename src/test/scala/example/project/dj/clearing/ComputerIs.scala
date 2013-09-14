@@ -7,16 +7,18 @@ import org.scalatest.WordSpec
 trait CmdOrTreeThing {
   def cmd: JustACommand
   def render = <table><tr><td>{cmd.title}</td>{cells}</tr></table>
-  def cells = cmd.expecteds.map(e => <td>{e}</td>)
+  def cells: NodeSeq
   def inCode: String = ???
 }
 
 case class Before(cmd: JustACommand) extends CmdOrTreeThing {
   def execute: After = After(cmd, cmd.execute)
+  def cells = cmd.expecteds.foldLeft(NodeSeq.Empty)((ns, e) => ns ++ <td>{e}</td>)
 }
 
 case class After(cmd: JustACommand, results: List[Result]) extends CmdOrTreeThing {
   def summary: Option[Summary] = None
+  def cells = results.foldLeft(NodeSeq.Empty)((ns, r) => ns ++ r.render)
 }
 
 trait JustACommand {
@@ -25,9 +27,17 @@ trait JustACommand {
   def expecteds: List[String]
 }
 
-trait Result
-case class Pass(expected: String) extends Result
-case class Fail(expected: String, actual: String) extends Result
+trait Result {
+  def render: NodeSeq
+}
+
+case class Pass(expected: String) extends Result {
+  def render = <td>{expected}</td>
+}
+
+case class Fail(expected: String, actual: String) extends Result {
+  def render = <td><span class="failText">{expected}</span>{actual}</td>
+}
 
 case class ComputerIs(expected: Boolean) extends JustACommand {
   import Implicits._
@@ -61,7 +71,7 @@ class AssertComputerIsSpec extends WordSpec {
   }
 
   "Afters can render themselves" in {
-    assert(After(ComputerIs(true), List(Fail("off", "on"))).render === <table><tr><td>Computer is</td><td>Fail: "is off", not "is on"</td></tr></table>)
+    assert(After(ComputerIs(true), List(Fail("off", "on"))).render === <table><tr><td>Computer is</td><td><span class="failText">off</span>on</td></tr></table>)
   }
 
   // Commands
