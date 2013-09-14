@@ -1,19 +1,15 @@
 package doc.jockey
 
-import example.project.main.{TradeClearingEngine, LchScm, LchFcm}
-import org.scalatest.{DocJockeySpec, WordSpec}
+import org.scalatest.DocJockeySpec
 import example.project.dj.clearing._
-import doc.jockey.model.{Command, Tree, Summary}
 
 class DocJockeyBootstrapSpec extends DocJockeySpec {
 
-  // GENERATED CODE - DO NOT EDIT (unless you REALLY know what you are doing)
+  // |Computer is|on|
 
-  // |AssertComputerIs|On|
+  // |Supported workflows|LCH-SCM|Manual, Netting|
 
-  // |SupportedWorkflows|LCH-SCM|Manual, Netting|
-
-  // |Supported Product Types|
+  // |Supported product types|
   // |Description|Clearing House|Vanilla| FRA | VNS |
   // |desc       |LCH-FCM       |   ✓   |  -  |  ✓  |
   // |desc       |LCH-SCM       |   ✓   |  ✓  |  -  |
@@ -21,9 +17,7 @@ class DocJockeyBootstrapSpec extends DocJockeySpec {
   // |pass|fail|exception|
   // |  22|   0|        0|
 
-//  type Data = Either[String, List[Data]]
-//  type Element = Either[Command, Data]
-
+  // GENERATED CODE - DO NOT EDIT (unless you REALLY know what you are doing)
   val testModel = List(
     ComputerIs(true),
     SupportedWorkflows("LCH-FCM", List("Manual", "Netting")),

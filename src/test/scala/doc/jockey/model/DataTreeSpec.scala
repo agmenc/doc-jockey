@@ -3,7 +3,7 @@ package doc.jockey.model
 import org.scalatest.WordSpec
 
 class DataTreeSpec extends WordSpec {
-  class DummyCommand extends Command {
+  class DummyCommand {
     def execute = ???
   }
 
