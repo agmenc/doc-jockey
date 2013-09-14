@@ -8,7 +8,6 @@ trait CmdOrTreeThing {
   def cmd: JustACommand
   def render = <table><tr><td>{cmd.title}</td>{cells}</tr></table>
   def cells: NodeSeq
-  def inCode: String = ???
 }
 
 case class Before(cmd: JustACommand) extends CmdOrTreeThing {
@@ -25,6 +24,7 @@ trait JustACommand {
   def execute: List[Result]
   def title: String
   def expecteds: List[String]
+  def inCode: String = this.toString
 }
 
 trait Result {
@@ -81,5 +81,9 @@ class AssertComputerIsSpec extends WordSpec {
 
   "Failed commands have failure results" in {
     assert(ComputerIs(false).execute === List(Fail("off", "on")))
+  }
+
+  "A command can render code for itself" in {
+    assert(ComputerIs(false).inCode === "ComputerIs(false)")
   }
 }
