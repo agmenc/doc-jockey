@@ -10,6 +10,6 @@ trait Cell[T] {
 case class Setup[T](data: T) extends Cell[T]
 case class Assert[T](data: T) extends Cell[T]
 
-case class SupportedWorkflows(clearingHouse: Setup[ClearingHouse], workflows: Assert[List[Workflow]]) extends Command {
+case class SupportedWorkflows(clearingHouse: ClearingHouse, workflows: List[Workflow]) extends Command {
   def execute = ??? // new TradeClearingEngine().supportedWorkflows(clearingHouse.data)
 }

@@ -1,8 +1,7 @@
 package org.scalatest
 
-import doc.jockey.builder.DocJockeyBuilder
 
-trait DocJockeySpec extends Suite with DocJockeyBuilder with Assertions { thisSuite =>
+trait DocJockeySpec extends Suite with Assertions { thisSuite =>
 
   private final val engine = new Engine("DjSpecMod", "DjSpec")
   import engine._

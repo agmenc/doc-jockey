@@ -3,7 +3,7 @@ package example.project.main
 trait ClearingHouse
 
 trait ClearingHouseImplicits {
-  implicit def convert(name: String): ClearingHouse = name match {
+  implicit def stringToClearingHouse(name: String): ClearingHouse = name match {
     case "LCH-FCM" => LchFcm
     case "LCH-SCM" => LchScm
   }

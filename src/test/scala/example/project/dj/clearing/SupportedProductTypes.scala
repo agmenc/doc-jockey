@@ -10,11 +10,13 @@ case class SupportedProductTypes(headers: List[String], rows: List[String]*) ext
     // Look up header type adapters in some map
 
     // TODO - CAS - 04/09/2013 - Reduce is not safe on an empty Seq
-    data
-      .map(rowToCommand)
-      .map(_.execute)
-      .reduce(_ + _)
+//    data
+//      .map(rowToCommand)
+//      .map(_.execute)
+//      .reduce(_ + _)
+
+    ???
   }
 
-  def rowToCommand(row: List[String]): Command = new Command{ def execute = Summary(0, 1, 0) }
+  def rowToCommand(row: List[String]): Command = new Command{ def execute = ??? }
 }
