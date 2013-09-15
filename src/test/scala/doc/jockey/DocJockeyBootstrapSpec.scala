@@ -19,7 +19,7 @@ class DocJockeyBootstrapSpec extends DocJockeySpec {
 
   // GENERATED CODE - DO NOT EDIT (unless you REALLY know what you are doing)
   val testModel = List(
-    ComputerIsNow(true),
+    ComputerIs(true),
     SupportedWorkflows("LCH-FCM", List("Manual", "Netting"))
 //    ,
 //    SupportedProductTypes(
