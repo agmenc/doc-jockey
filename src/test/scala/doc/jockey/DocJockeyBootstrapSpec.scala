@@ -19,12 +19,13 @@ class DocJockeyBootstrapSpec extends DocJockeySpec {
 
   // GENERATED CODE - DO NOT EDIT (unless you REALLY know what you are doing)
   val testModel = List(
-    ComputerIs(true),
-    SupportedWorkflows("LCH-FCM", List("Manual", "Netting")),
-    SupportedProductTypes(
-      List("Description", "Clearing House", "Vanilla", "FRA", "VNS"),
-      List("desc", "LCH-FCM", "Yes", "-", "Yes"),
-      List("desc", "LCH-SCM", "-", "Yes", "Nope"))
+    ComputerIsNow(true),
+    SupportedWorkflows("LCH-FCM", List("Manual", "Netting"))
+//    ,
+//    SupportedProductTypes(
+//      List("Description", "Clearing House", "Vanilla", "FRA", "VNS"),
+//      List("desc", "LCH-FCM", "Yes", "-", "Yes"),
+//      List("desc", "LCH-SCM", "-", "Yes", "Nope"))
   )
 
   specify("Executing the list of commands results in a list of executed commands") {
