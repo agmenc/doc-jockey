@@ -1,4 +1,4 @@
-package example.project.clearing
+package example.project.fixture
 
 object Computer {
   def isOn = true

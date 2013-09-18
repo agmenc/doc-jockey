@@ -1,10 +1,8 @@
-package example.project.dj.clearing
+package example.project.fixture
 
-import doc.jockey.model.{Fail, Pass, Implicits, JustACommand}
-import example.project.clearing.Computer
+import doc.jockey.model._
 
 case class ComputerIs(expected: Boolean) extends JustACommand {
-  import Implicits._
 
   def execute = List(
     // TODO - CAS - 14/09/2013 - Map from types to Strings, maybe with a shapeless polymorphic map or bi-map

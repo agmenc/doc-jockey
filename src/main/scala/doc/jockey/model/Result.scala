@@ -6,6 +6,10 @@ trait Result {
   def render: NodeSeq
 }
 
+case class Setup(data: String) extends Result {
+  def render = <td>{data}</td>
+}
+
 case class Pass(expected: String) extends Result {
   def render = <td>{expected}</td>
 }

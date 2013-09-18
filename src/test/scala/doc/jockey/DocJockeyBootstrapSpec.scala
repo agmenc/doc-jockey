@@ -1,7 +1,10 @@
 package doc.jockey
 
+import doc.jockey.model._
+import example.project.fixture.ComputerIs
+import example.project.fixture.SupportedWorkflows
+import example.project.main._
 import org.scalatest.DocJockeySpec
-import example.project.dj.clearing._
 
 class DocJockeyBootstrapSpec extends DocJockeySpec {
 
@@ -19,8 +22,8 @@ class DocJockeyBootstrapSpec extends DocJockeySpec {
 
   // GENERATED CODE - DO NOT EDIT (unless you REALLY know what you are doing)
   val testModel = List(
-    ComputerIs(true),
-    SupportedWorkflows("LCH-FCM", List("Manual", "Netting"))
+    ComputerIs(false),
+    SupportedWorkflows(LchFcm, List(Manual, Netting))
 //    ,
 //    SupportedProductTypes(
 //      List("Description", "Clearing House", "Vanilla", "FRA", "VNS"),
@@ -28,8 +31,8 @@ class DocJockeyBootstrapSpec extends DocJockeySpec {
 //      List("desc", "LCH-SCM", "-", "Yes", "Nope"))
   )
 
-  specify("Executing the list of commands results in a list of executed commands") {
-    assert(false === true)
+  specify("We can get an overall Summary of the test run") {
+    assert(testModel.map(Before(_).execute).map(_.summary).foldLeft(Summary.empty)(_ + _) === Summary(4, 2))
   }
 
   specify("Executed Commands can render themselves") {

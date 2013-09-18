@@ -15,4 +15,5 @@ case class Before(cmd: JustACommand) extends CmdOrTreeThing {
 
 case class After(cmd: JustACommand, results: List[Result]) extends CmdOrTreeThing {
   def cells = results.foldLeft(NodeSeq.Empty)((ns, r) => ns ++ r.render)
+  def summary = Summary(results)
 }

@@ -1,8 +1,8 @@
-package example.project.dj.clearing
+package example.project.fixture
 
+import doc.jockey.model.Before
 import doc.jockey.model._
 import org.scalatest.WordSpec
-import doc.jockey.model.Before
 
 class ComputerIsSpec extends WordSpec {
   // Thingys
@@ -17,6 +17,10 @@ class ComputerIsSpec extends WordSpec {
 
   "Afters can render themselves" in {
     assert(After(ComputerIs(true), List(Fail("off", "on"))).render === <table><tr><td>Computer is</td><td><span class="failText">off</span>on</td></tr></table>)
+  }
+
+  "Afters have Summaries" in {
+    assert(After(ComputerIs(true), List(Fail("off", "on"))).summary === Summary(0, 1))
   }
 
   // Commands
