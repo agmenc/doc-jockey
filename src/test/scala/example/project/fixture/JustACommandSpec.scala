@@ -1,6 +1,5 @@
 package example.project.fixture
 
-import doc.jockey.model.Before
 import doc.jockey.model._
 import org.scalatest.WordSpec
 

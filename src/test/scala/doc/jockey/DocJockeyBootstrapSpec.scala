@@ -37,8 +37,4 @@ class DocJockeyBootstrapSpec extends DocJockeySpec {
   specify("We can get an overall Summary of the test run") {
     assert(testModel.map(Before(_).execute).map(_.summary).foldLeft(Summary.empty)(_ + _) === Summary(1, 2))
   }
-
-  specify("Executed Commands can render themselves") {
-    assert(false === true)
-  }
 }
