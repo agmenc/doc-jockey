@@ -12,6 +12,8 @@ class DocJockeyBootstrapSpec extends DocJockeySpec {
 
   // |Supported workflows|LCH-SCM|Manual, Netting|
 
+  // |Supported workflows|LCH-FCM|Manual, Netting|
+
   // |Supported product types|
   // |Description|Clearing House|Vanilla| FRA | VNS |
   // |desc       |LCH-FCM       |   ✓   |  -  |  ✓  |
@@ -23,6 +25,7 @@ class DocJockeyBootstrapSpec extends DocJockeySpec {
   // GENERATED CODE - DO NOT EDIT (unless you REALLY know what you are doing)
   val testModel = List(
     ComputerIs(false),
+    SupportedWorkflows(LchScm, List(Manual, Netting)),
     SupportedWorkflows(LchFcm, List(Manual, Netting))
 //    ,
 //    SupportedProductTypes(
@@ -32,7 +35,7 @@ class DocJockeyBootstrapSpec extends DocJockeySpec {
   )
 
   specify("We can get an overall Summary of the test run") {
-    assert(testModel.map(Before(_).execute).map(_.summary).foldLeft(Summary.empty)(_ + _) === Summary(4, 2))
+    assert(testModel.map(Before(_).execute).map(_.summary).foldLeft(Summary.empty)(_ + _) === Summary(1, 2))
   }
 
   specify("Executed Commands can render themselves") {

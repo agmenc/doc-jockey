@@ -10,6 +10,7 @@ object Summary {
   def apply(result: Result): Summary = result match {
     case p: Pass => Summary(1, 0)
     case f: Fail => Summary(0, 1)
+    case s: Setup => Summary(0, 0)
   }
 
   def empty = Summary(0, 0)
