@@ -5,6 +5,7 @@ import example.project.fixture.ComputerIs
 import example.project.fixture.SupportedWorkflows
 import example.project.main._
 import org.scalatest.DocJockeySpec
+import doc.jockey.runners.DocJockeyRunner
 
 class DocJockeyBootstrapSpec extends DocJockeySpec {
 
@@ -35,6 +36,7 @@ class DocJockeyBootstrapSpec extends DocJockeySpec {
   )
 
   specify("We can get an overall Summary of the test run") {
-    assert(testModel.map(Before(_).execute).map(_.summary).foldLeft(Summary.empty)(_ + _) === Summary(1, 2))
+    assert(DocJockeyRunner(testModel).summary.isAPass === false)
+    assert(DocJockeyRunner(testModel).summary === Summary(1, 2))
   }
 }
