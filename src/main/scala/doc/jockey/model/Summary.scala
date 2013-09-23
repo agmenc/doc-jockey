@@ -3,6 +3,7 @@ package doc.jockey.model
 case class Summary(pass: Int, fail: Int) {
   def +(that: Summary) = Summary(pass + that.pass, fail + that.fail)
   def isAPass = pass > 0 && fail == 0
+  override def toString = s"pass: $pass, fail: $fail"
 }
 
 object Summary {

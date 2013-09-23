@@ -1,12 +1,18 @@
 package org.scalatest
 
+import doc.jockey.model.JustACommand
+import doc.jockey.runners.DocJockeyRunner
+
 
 trait DocJockeySpec extends Suite with Assertions { thisSuite =>
 
   private final val engine = new Engine("DjSpecMod", "DjSpec")
   import engine._
   
-  def specify(specTitle: String)(testFun: => Unit) = registerDjSpec(specTitle, testFun _)
+  def specify(specTitle: String)(commands: JustACommand*) = registerDjSpec(specTitle, () => {
+    val runner = DocJockeyRunner(commands.toList)
+    assert(runner.summary.isAPass, "DocJockey test failed: " + specTitle + "\n" + runner.summary)
+  })
 
   private def registerDjSpec(specTitle: String, testFun: () => Unit) =
     registerTest(specTitle, testFun, "noResourceNameRequired", "DocJockeySpec.scala", "noMethodNameRequired", 1, None, None)

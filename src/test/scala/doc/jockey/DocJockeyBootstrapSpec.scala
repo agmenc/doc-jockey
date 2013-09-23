@@ -1,17 +1,13 @@
 package doc.jockey
 
-import doc.jockey.model._
 import example.project.fixture.ComputerIs
 import example.project.fixture.SupportedWorkflows
 import example.project.main._
 import org.scalatest.DocJockeySpec
-import doc.jockey.runners.DocJockeyRunner
 
 class DocJockeyBootstrapSpec extends DocJockeySpec {
 
   // |Computer is|on|
-
-  // |Supported workflows|LCH-SCM|Manual, Netting|
 
   // |Supported workflows|LCH-FCM|Manual, Netting|
 
@@ -24,19 +20,14 @@ class DocJockeyBootstrapSpec extends DocJockeySpec {
   // |  22|   0|        0|
 
   // GENERATED CODE - DO NOT EDIT (unless you REALLY know what you are doing)
-  val testModel = List(
-    ComputerIs(false),
-    SupportedWorkflows(LchScm, List(Manual, Netting)),
+  specify("Trade clearing engine supports correct workflows and product types") (
+    ComputerIs(true),
     SupportedWorkflows(LchFcm, List(Manual, Netting))
-//    ,
-//    SupportedProductTypes(
-//      List("Description", "Clearing House", "Vanilla", "FRA", "VNS"),
-//      List("desc", "LCH-FCM", "Yes", "-", "Yes"),
-//      List("desc", "LCH-SCM", "-", "Yes", "Nope"))
+    //    ,
+    //    SupportedProductTypes(
+    //      List("Description", "Clearing House", "Vanilla", "FRA", "VNS"),
+    //      List("desc", "LCH-FCM", "Yes", "-", "Yes"),
+    //      List("desc", "LCH-SCM", "-", "Yes", "Nope"))
+    //  )
   )
-
-  specify("We can get an overall Summary of the test run") {
-    assert(DocJockeyRunner(testModel).summary.isAPass === false)
-    assert(DocJockeyRunner(testModel).summary === Summary(1, 2))
-  }
 }
