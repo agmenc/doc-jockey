@@ -3,4 +3,6 @@ package example.project.main
 case class Money(currency: Currency, amount: Amount)
 
 trait Currency
-trait Amount
+case object Usd extends Currency
+
+case class Amount(number: BigDecimal)

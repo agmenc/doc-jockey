@@ -1,11 +1,10 @@
 package doc.jockey.runners
 
 import doc.jockey.model._
-import doc.jockey.model.Before
-import doc.jockey.model.After
 
 case class DocJockeyRunner(commands: List[JustACommand]) {
-  private lazy val afters: List[After] = commands.map(Before(_).execute)
+  private lazy val befores: List[Before] = commands.map(Before)
+  private lazy val afters: List[After] = befores.map(_.execute)
 
-  def summary = afters.map(_.summary).foldLeft(Summary.empty)(_ + _)
+  def summary = afters.flatMap(after => after.summary :: after.children.map(_.summary)).foldLeft(Summary.empty)(_ + _)
 }

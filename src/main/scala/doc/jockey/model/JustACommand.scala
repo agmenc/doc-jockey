@@ -5,9 +5,10 @@ trait JustACommand {
   def expecteds: List[Result]
   def actuals: List[String]
 
-  def inCode: String = this.toString
-
+  def subCommands: List[JustACommand] = Nil
   def execute: List[Result] = compare(expecteds zip actuals)
+
+  def inCode: String = this.toString
 
   private def compare(expectedsAndActuals: List[(Result, String)]) = expectedsAndActuals.map(_ match {
     case (exR, ac) if exR.expected == ac => exR

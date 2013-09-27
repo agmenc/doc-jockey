@@ -6,7 +6,7 @@ import example.project.fixture.ComputerIs
 class CmdOrTreeThingSpec extends WordSpec {
   "Executing a Before gives you an After" in {
     val aCmd = ComputerIs(true)
-    assert(Before(aCmd).execute === After(aCmd, List(Pass("on"))))
+    assert(Before(aCmd).execute === After(aCmd, List(Pass("on")), Nil))
   }
 
   "Befores can render themselves" in {
@@ -14,10 +14,10 @@ class CmdOrTreeThingSpec extends WordSpec {
   }
 
   "Afters can render themselves" in {
-    assert(After(ComputerIs(true), List(Fail("off", "on"))).render === <table><tr><td>Computer is</td><td><span class="failText">off</span>on</td></tr></table>)
+    assert(After(ComputerIs(true), List(Fail("off", "on")), Nil).render === <table><tr><td>Computer is</td><td><span class="failText">off</span>on</td></tr></table>)
   }
 
   "Afters have Summaries" in {
-    assert(After(ComputerIs(true), List(Fail("off", "on"))).summary === Summary(0, 1))
+    assert(After(ComputerIs(true), List(Fail("off", "on")), Nil).summary === Summary(0, 1))
   }
 }

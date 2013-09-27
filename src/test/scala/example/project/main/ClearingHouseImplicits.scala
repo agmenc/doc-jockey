@@ -13,4 +13,7 @@ trait ClearingHouseImplicits {
 
   implicit def stringToWorkflow(name: String): Workflow = Workflow.workflows.find(_.toString == name).get
   implicit def workflowToString(wf: Workflow): String = wf.toString
+
+  implicit def stringToTradeType(name: String): TradeType = TradeType.tradeTypes.find(_.toString == name).get
+  implicit def tradeTypeToString(tt: TradeType): String = tt.toString
 }

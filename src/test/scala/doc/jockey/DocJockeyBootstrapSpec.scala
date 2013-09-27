@@ -1,7 +1,7 @@
 package doc.jockey
 
-import example.project.fixture.ComputerIs
-import example.project.fixture.SupportedWorkflows
+import example.project.fixture._
+import example.project.fixture.SupportedTradeTypes.Expected
 import example.project.main._
 import org.scalatest.DocJockeySpec
 
@@ -11,7 +11,7 @@ class DocJockeyBootstrapSpec extends DocJockeySpec {
 
   // |Supported workflows|LCH-FCM|Manual, Netting|
 
-  // |Supported product types|
+  // |Product types supported|
   // |Description|Clearing House|Vanilla| FRA | VNS |
   // |desc       |LCH-FCM       |   ✓   |  -  |  ✓  |
   // |desc       |LCH-SCM       |   ✓   |  ✓  |  -  |
@@ -20,14 +20,13 @@ class DocJockeyBootstrapSpec extends DocJockeySpec {
   // |  22|   0|        0|
 
   // GENERATED CODE - DO NOT EDIT (unless you REALLY know what you are doing)
-  specify("Trade clearing engine supports correct workflows and product types") (
+  specify("Trade clearing engine supports correct workflows and product types")(
     ComputerIs(true),
-    SupportedWorkflows(LchFcm, List(Manual, Netting))
-    //    ,
-    //    SupportedProductTypes(
-    //      List("Description", "Clearing House", "Vanilla", "FRA", "VNS"),
-    //      List("desc", "LCH-FCM", "Yes", "-", "Yes"),
-    //      List("desc", "LCH-SCM", "-", "Yes", "Nope"))
-    //  )
-  )
+    SupportedWorkflows(LchFcm, List(Manual, Netting)),
+    SupportedTradeTypes(
+      List(Vanilla, Fra, Vns),
+      List(
+        Expected("some desc", LchFcm, true, false, true),
+        Expected("some other desc", LchScm, true, true, false)
+      )))
 }
