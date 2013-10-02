@@ -17,7 +17,7 @@ object SupportedTradeTypes {
   case class Expected(desc: String, clearingHouse: ClearingHouse, supporteds: Boolean*)
 }
 
-case class WrapZippyThing(expected: Expected, tradeTypes: List[TradeType]) extends JustACommand {
+case class WrapZippyThing(expected: Expected, tradeTypes: List[TradeType]) extends JustACommand with OnOrOff {
   import expected._
 
   // TODO - CAS - 25/09/2013 - Fail clearly if the headers and expecteds are different lengths
