@@ -2,9 +2,8 @@ package doc.jockey.rendering
 
 import doc.jockey.model._
 import org.scalatest.WordSpec
-import scala.xml._
 
-class TreePainterSpec extends WordSpec {
+class TreePainterSpec extends WordSpec with TableAware {
   val title = "Single row command"
 
   case class SingleRowCmd(works: Boolean) extends JustACommand with YesOrNo {
@@ -19,17 +18,23 @@ class TreePainterSpec extends WordSpec {
 
     val result = new TreePainter().paint(test)
 
-    val cells = (result \\ "tr" \ "td").map(_.text)
-    assert(cells === title :: "Does this thing work?" :: "Yes" :: Nil)
+    assert(result.tables.head.cells === title :: "Does this thing work?" :: "Yes" :: Nil)
   }
+
+//  "We can paint a single After" in {
+//    val cmd = SingleRowCmd(false)
+//    val test = (Before(cmd) :: Nil).map(_.execute)
+//
+//    val result = new TreePainter().paint(test)
+//
+//    assert(result.tables.head.cells === title :: "Does this thing work?" :: "FAIL: actual: No, expected: Yes" :: Nil)
+//  }
 
   "We can paint Before trees" in {
     val test = List(SingleRowCmd(true), SingleRowCmd(false), SingleRowCmd(true)).map(Before)
 
-    val result: NodeSeq = new TreePainter().paint(test)
+    val result = new TreePainter().paint(test)
 
-    val middleTable = (result \\ "table").tail.head
-    val cells = (middleTable \ "tr" \ "td").map(_.text)
-    assert(cells === title :: "Does this thing work?" :: "No" :: Nil)
+    assert(result.tables(1).cells === title :: "Does this thing work?" :: "No" :: Nil)
   }
 }
