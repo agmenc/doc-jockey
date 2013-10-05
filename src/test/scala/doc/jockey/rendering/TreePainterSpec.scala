@@ -12,16 +12,7 @@ class TreePainterSpec extends WordSpec with TableAware {
     def actuals = List("Does this thing work?", testPasses)
   }
 
-  "Befores render from expecteds, while Afters render from actual Results" in {
-    val cmd = SingleRowCmd(true)
-    val before = Before(cmd)
-    val after = before.execute
-
-    assert(before.renderFrom === before.cmd.expecteds)
-    assert(after.renderFrom === after.results)
-  }
-
-  "We can paint trees of Befores and Afters" in {
+  "We can paint the tree of an executed test" in {
     val test = List(SingleRowCmd(true), SingleRowCmd(false), SingleRowCmd(true)).map(Before(_).execute)
 
     val result = new TreePainter().paint(test)
