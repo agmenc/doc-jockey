@@ -1,11 +1,11 @@
 package doc.jockey.rendering
 
-import doc.jockey.model.Before
+import doc.jockey.model._
 import scala.xml.NodeSeq
 
 class TreePainter {
-  def paint(befores: List[Before]): NodeSeq =
+  def paint(cmdOrTreeThings: List[CmdOrTreeThing]): NodeSeq =
     <html>
-      <body>{befores.map(_.render).foldLeft(NodeSeq.Empty)(_ ++ _)}</body>
+      <body>{cmdOrTreeThings.map(_.render).foldLeft(NodeSeq.Empty)(_ ++ _)}</body>
     </html>
 }
