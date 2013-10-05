@@ -19,4 +19,9 @@ class DocJockeyRunnerSpec extends WordSpec {
     assert(runner.summary.isAPass === false)
     assert(runner.summary === Summary(1, 2))
   }
+
+  "The runner outputs some HTML" in {
+    val runner = DocJockeyRunner(testModel)
+    fail()
+  }
 }
