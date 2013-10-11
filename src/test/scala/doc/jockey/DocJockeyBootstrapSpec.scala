@@ -17,7 +17,7 @@ class DocJockeyBootstrapSpec extends DocJockeySpec {
   // |desc       |LCH-SCM       |   ✓   |  ✓  |  -  |
 
   // |pass|fail|exception|
-  // |  22|   0|        0|
+  // |  7|   0|        0|
 
   // GENERATED CODE - DO NOT EDIT (unless you REALLY know what you are doing)
   specify("Trade clearing engine supports correct workflows and product types")(

@@ -7,8 +7,8 @@ import example.project.fixture.SupportedTradeTypes._
 
 case class SupportedTradeTypes(tradeTypes: List[TradeType], subExpecteds: List[Expected]) extends JustACommand {
   def title = "Product types supported"
-  def expecteds: List[Result] = List(Setup("Description"), Setup("ClearingHouse")) ++ tradeTypes.map(Pass(_))
-  def actuals: List[String] = Nil
+  def expecteds: List[Result] = List(Setup("Description"), Setup("ClearingHouse")) ++ tradeTypes.map(Setup(_))
+  def actuals: List[String] = expecteds.map(_.expected)
 
   override def subCommands = subExpecteds.map(WrapZippyThing(_, tradeTypes))
 }
