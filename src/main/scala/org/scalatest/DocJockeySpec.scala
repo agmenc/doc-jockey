@@ -3,24 +3,26 @@ package org.scalatest
 import doc.jockey.model.JustACommand
 import doc.jockey.runners._
 
-trait DocJockeySpec extends Suite with Assertions { thisSuite =>
-
-  private final val engine = new Engine("DjSpecMod", "DjSpec")
+trait DocJockeySpec extends Suite with Assertions with BeforeAndAfterAll { thisSuite =>
+  private val writer = new OutputWriter(this.getClass)
+  private val engine = new Engine("DjSpecMod", "DjSpec")
 
   import engine._
 
   def specify(specTitle: String)(commands: JustACommand*) = registerDjSpec(specTitle, () => {
-    val runner = DocJockeyRunner(commands.toList)
+    val runner = DocJockeyRunner(specTitle, commands.toList)
     assert(runner.summary.isAPass, "DocJockey test failed: " + specTitle + "\n" + runner.summary)
-    DocJockeyWriter.write(runner.output)
+    writer.write(runner.output)
   })
+
+  override protected def afterAll(): Unit = writer.close()
 
   private def registerDjSpec(specTitle: String, testFun: () => Unit) =
     registerTest(specTitle, testFun, "noResourceNameRequired", "DocJockeySpec.scala", "noMethodNameRequired", 1, None, None)
 
   override def testNames = atomic.get.testNamesList.toSet
 
-  // Don't do any test method annotation lookups; there isn't a test method.
+  // We don't do any test method annotation lookups; there isn't a test method.
   override def tags = Map.empty
 
   // Instead of invoking a test method, we wrap the TestLeaf in an anonymous test method

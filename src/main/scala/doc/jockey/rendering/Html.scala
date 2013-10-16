@@ -1,7 +1,8 @@
 package doc.jockey.rendering
 
-import scala.xml.NodeSeq
+import doc.jockey.rendering.Prettifier._
 
 object Html {
-  def apply(contents: NodeSeq): NodeSeq = <html><body>{contents}</body></html>
+  val html = <html><header></header><body>@STUFF@</body></html>
+  val Seq(header, footer) = html.split("@STUFF@").toSeq
 }

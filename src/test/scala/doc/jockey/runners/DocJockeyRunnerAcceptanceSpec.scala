@@ -19,6 +19,7 @@ class DocJockeyRunnerAcceptanceSpec extends WordSpec with HtmlAssertions {
       )))
 
   val expectedHtml =
+    <h2>Can we get some HTML?</h2> ++
     <table>
       <tr><td>Computer is</td> <td>on</td></tr>
     </table>
@@ -38,14 +39,14 @@ class DocJockeyRunnerAcceptanceSpec extends WordSpec with HtmlAssertions {
 
 
   "We can get an overall Summary of the test run" in {
-    val runner = DocJockeyRunner(testModel)
+    val runner = DocJockeyRunner("Can we get a summary?", testModel)
 
     assert(runner.summary.isAPass === true)
     assert(runner.summary === Summary(8, 0))
   }
 
   "The runner outputs some HTML" in {
-    val runner = DocJockeyRunner(testModel)
+    val runner = DocJockeyRunner("Can we get some HTML?", testModel)
 
     assertEqual(runner.output, expectedHtml)
   }

@@ -7,6 +7,8 @@ import org.scalatest.DocJockeySpec
 
 class DocJockeyBootstrapSpec extends DocJockeySpec {
 
+  // Trade clearing engine supports correct workflows and product types
+
   // |Computer is|on|
 
   // |Supported workflows|LCH-FCM|Manual, Netting|
@@ -28,5 +30,15 @@ class DocJockeyBootstrapSpec extends DocJockeySpec {
       List(
         Expected("some desc", LchFcm, true, false, true),
         Expected("some other desc", LchScm, true, true, false)
-      )))
+      )
+    )
+  )
+
+  // We can have a second, if fairly pointless, doc-jockey spec in the same Spec class
+
+  // |Computer is|on|
+
+  specify("We can have a second, if fairly pointless, doc-jockey spec in the same Spec class")(
+    ComputerIs(true)
+  )
 }
