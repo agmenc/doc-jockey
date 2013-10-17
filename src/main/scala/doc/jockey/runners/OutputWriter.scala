@@ -14,8 +14,8 @@ class OutputWriter(callingSpec: Class[_]) {
   def write(ns: NodeSeq) { synchronized(file.appendAll(ns)) }
   def close() { file.appendAll(Html.footer) }
 
-  private def file: File = tee((dir / fileName).toFile)(_.createFile())
-  private def dir: Directory = tee((baseDir / packageDir).toDirectory)(_.createDirectory())
+  private[runners] def file: File = tee((dir / fileName).toFile)(_.createFile())
+  private[runners] def dir: Directory = tee((baseDir / packageDir).toDirectory)(_.createDirectory())
 
   file.writeAll(Html.header)
 }
