@@ -6,5 +6,5 @@ import scala.Pimps._
 object Prettifier {
   private def prettifier = new PrettyPrinter(1000, 4)
 
-  implicit def render(ns: NodeSeq): String = tee(new StringBuilder())(prettifier.format(ns.head, _)).toString()
+  implicit def render(ns: NodeSeq): String = tee(new StringBuilder())(sb => ns.map(prettifier.format(_, sb))).toString()
 }

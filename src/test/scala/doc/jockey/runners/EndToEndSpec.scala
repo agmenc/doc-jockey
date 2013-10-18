@@ -1,40 +1,57 @@
 package doc.jockey.runners
 
+import doc.jockey.rendering.HtmlAssertions
 import example.project.fixture.SupportedTradeTypes.Expected
 import example.project.fixture._
 import example.project.main._
 import org.scalatest._
 import org.scalatest.events.Event
-import scala.reflect.io.File
 
-class EndToEndSpec extends WordSpec {
+class EndToEndSpec extends WordSpec with HtmlAssertions {
   "We can run a spec in a different class, and check the output file" in {
-    val target = new OutputWriter(classOf[SomeDocJockeySpec]).file
-    target.deleteIfExists()
-    assert(!target.exists)
+    val outputFile = new OutputWriter(classOf[SomeDocJockeySpec]).file
+    outputFile.deleteIfExists()
+    assert(!outputFile.exists)
 
-    (new SomeDocJockeySpec).run(Some("Some test description"), new VeryQuietReporter(), new Stopper(){}, new Filter(None, Set.empty), Map(), None, new Tracker())
+    runSpec(new SomeDocJockeySpec)
 
-    // TODO - CAS - 17/10/2013 - Merge the Bootstrap spec in here, and check for the expected contents. We should
-    //                           have one - and one only - place where we expect verbatim an entire chunk of HTML
-    assert(target.exists)
+    assertEqual(outputFile.slurp(), expectedHtml)
+  }
+
+  class SomeDocJockeySpec extends DocJockeySpec {
+//    specify("Trade clearing engine supports correct workflows and product types")(
+//      ComputerIs(true),
+//      SupportedWorkflows(LchFcm, List(Manual, Netting)),
+//      SupportedTradeTypes(
+//        List(Vanilla, Fra, Vns),
+//        List(
+//          Expected("some desc", LchFcm, true, false, true),
+//          Expected("some other desc", LchScm, true, true, false)
+//        )
+//      )
+//    )
+
+    specify("We can have a second, if fairly pointless, doc-jockey spec in the same Spec class")(
+      ComputerIs(true)
+    )
+  }
+
+  def runSpec(spec: EndToEndSpec.this.type#SomeDocJockeySpec) {
+    spec.run(None, new VeryQuietReporter(), new Stopper() {}, new Filter(None, Set.empty), Map(), None, new Tracker())
   }
 
   class VeryQuietReporter extends Reporter {
     def apply(event: Event) = {} // swallow
   }
 
-  class SomeDocJockeySpec extends DocJockeySpec {
-    specify("Some test description")(
-      ComputerIs(true),
-      SupportedWorkflows(LchFcm, List(Manual, Netting)),
-      SupportedTradeTypes(
-        List(Vanilla, Fra, Vns),
-        List(
-          Expected("some desc", LchFcm, true, false, true),
-          Expected("some other desc", LchScm, true, true, false)
-        )
-      )
-    )
-  }
+  val expectedHtml =
+    <html>
+    <header/>
+    <body>
+      <h2>We can have a second, if fairly pointless, doc-jockey spec in the same Spec class</h2>
+      <table>
+        <tr><td>Computer is</td><td>on</td></tr>
+      </table>
+    </body>
+    </html>
 }
