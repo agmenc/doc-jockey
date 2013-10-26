@@ -9,6 +9,10 @@ trait OnOrOff {
   implicit def onOrOff(bool: Boolean): String = if (bool) "on" else "off"
 }
 
+trait TickOrDash {
+  implicit def onOrOff(bool: Boolean): String = if (bool) "✓" else "-"
+}
+
 trait YesOrNo {
   implicit def onOrOff(bool: Boolean): String = if (bool) "Yes" else "No"
 }

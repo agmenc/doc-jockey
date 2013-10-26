@@ -3,7 +3,7 @@ package doc.jockey.rendering
 import doc.jockey.model.After
 import doc.jockey.model.Before
 import doc.jockey.model.Fail
-import example.project.fixture.SupportedTradeTypes.Expected
+import example.project.fixture.SupportedProductTypes.Expected
 import example.project.fixture._
 import example.project.main._
 import org.scalatest.WordSpec
@@ -11,7 +11,7 @@ import org.scalatest.WordSpec
 class TestNodeRenderingSpec extends WordSpec with HtmlAssertions {
 
   "Single-row Befores render themselves" in {
-    assertEqual(Before(ComputerIs(true)).renderTable, <table><tr><td>Computer is</td><td>on</td></tr></table>, Some("Single row 1"))
+    assertEqual(Before(ComputerIs(true)).renderTable, <table><tr><td>Computer is</td><td>on</td></tr></table>)
   }
 
   "Single-row Afters render themselves" in {
@@ -19,7 +19,7 @@ class TestNodeRenderingSpec extends WordSpec with HtmlAssertions {
   }
 
   val multiRowCommand =
-    SupportedTradeTypes(
+    SupportedProductTypes(
       List(Vanilla, Fra, Vns),
       List(
         Expected("some desc", LchFcm, true, false, true),
@@ -36,7 +36,7 @@ class TestNodeRenderingSpec extends WordSpec with HtmlAssertions {
         <tr><td>some other desc</td><td>LCH-SCM</td><td>✓</td><td>✓</td><td>-</td></tr>
       </table>
     
-    assertEqual(Before(multiRowCommand).renderTable, expected, Some("Multi 1"))
+    assertEqual(Before(multiRowCommand).renderTable, expected)
   }
 
   "Multi-row Afters render themselves" in {
@@ -49,7 +49,7 @@ class TestNodeRenderingSpec extends WordSpec with HtmlAssertions {
       </table>
 
     val after = Before(multiRowCommand).execute
-    assertEqual(after.renderTable, expected)
+    assertEqual(after.renderTable, expected, "Multi 2")
     fail()
   }
 }

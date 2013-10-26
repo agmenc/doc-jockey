@@ -14,6 +14,8 @@ trait HtmlAssertions { self: Suite =>
   def assertEqual(actual: NodeSeq, expected: NodeSeq, testName: Option[String] = None) = compare(actual, expected, testName)
   def assertEqual(actual: String, expected: NodeSeq) = compare(actual, expected)
 
+  implicit def toOption(string: String): Option[String] = Some(string)
+
   private def compare(actual: String, expected: String, testName: Option[String] = None) =
     if (actual != expected) {
       testName.map(name => {

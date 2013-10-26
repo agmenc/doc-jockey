@@ -1,11 +1,9 @@
 package doc.jockey.runners
 
 import doc.jockey.model.Summary
-import example.project.fixture.SupportedTradeTypes.Expected
-import example.project.fixture._
-import example.project.main._
-import org.scalatest.WordSpec
 import doc.jockey.rendering.HtmlAssertions
+import example.project.fixture._
+import org.scalatest.WordSpec
 
 class DocJockeyRunnerAcceptanceSpec extends WordSpec with HtmlAssertions {
   val testModel = List(ComputerIs(true))

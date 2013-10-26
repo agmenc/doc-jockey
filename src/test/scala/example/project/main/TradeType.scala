@@ -7,5 +7,5 @@ object TradeType {
 }
 
 case object Vanilla extends TradeType
-case object Fra extends TradeType
-case object Vns extends TradeType
+case object Fra extends TradeType {override val toString = "FRA"}
+case object Vns extends TradeType {override val toString = "VNS"}
