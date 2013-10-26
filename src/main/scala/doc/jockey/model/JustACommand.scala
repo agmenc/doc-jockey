@@ -10,8 +10,8 @@ trait JustACommand {
 
   def inCode: String = this.toString
 
-  private def compare(expectedsAndActuals: List[(Result, String)]) = expectedsAndActuals.map(_ match {
+  private def compare(expectedsAndActuals: List[(Result, String)]) = expectedsAndActuals.map {
     case (exR, ac) if exR.expected == ac => exR
     case (exR, ac) => Fail(exR.expected, ac)
-  })
+  }
 }

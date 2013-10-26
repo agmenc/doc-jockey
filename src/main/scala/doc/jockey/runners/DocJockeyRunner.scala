@@ -7,5 +7,5 @@ case class DocJockeyRunner(specTitle: String, commands: Iterable[JustACommand]) 
   private lazy val afters = commands.map(Before(_).execute)
 
   def summary: Summary = afters.foldLeft(Summary.empty)(_ + _.summary)
-  def output: NodeSeq = <h2>{specTitle}</h2> ++ afters.foldLeft(NodeSeq.Empty)(_ ++ _.render)
+  def output: NodeSeq = <h2>{specTitle}</h2> ++ afters.foldLeft(NodeSeq.Empty)(_ ++ _.renderTable)
 }

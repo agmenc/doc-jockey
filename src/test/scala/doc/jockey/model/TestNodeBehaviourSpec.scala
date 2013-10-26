@@ -4,18 +4,10 @@ import org.scalatest.WordSpec
 import example.project.fixture.ComputerIs
 import doc.jockey.rendering.HtmlAssertions
 
-class CmdOrTreeThingSpec extends WordSpec with HtmlAssertions {
+class TestNodeBehaviourSpec extends WordSpec with HtmlAssertions {
   "Executing a Before gives you an After" in {
     val aCmd = ComputerIs(true)
     assert(Before(aCmd).execute === After(aCmd, List(Pass("on")), Nil))
-  }
-
-  "Befores can render themselves" in {
-    assertEqual(Before(ComputerIs(true)).render, <table><tr><td>Computer is</td><td>on</td></tr></table>)
-  }
-
-  "Afters can render themselves" in {
-    assertEqual(After(ComputerIs(true), List(Fail("off", "on")), Nil).render, <table><tr><td>Computer is</td><td><span class="failText">off</span>on</td></tr></table>)
   }
 
   "Afters have Summaries" in {
