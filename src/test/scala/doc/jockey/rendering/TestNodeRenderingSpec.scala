@@ -23,7 +23,7 @@ class TestNodeRenderingSpec extends WordSpec with HtmlAssertions {
       List(Vanilla, Fra, Vns),
       List(
         Expected("some desc", LchFcm, true, false, true),
-        Expected("some other desc", LchScm, true, true, false)
+        Expected("some other desc", LchScm, true, true, true)
       )
     )
 
@@ -33,7 +33,7 @@ class TestNodeRenderingSpec extends WordSpec with HtmlAssertions {
         <tr><td>Product types supported</td></tr>
         <tr><td>Description</td><td>Clearing house</td><td>Vanilla</td><td>FRA</td><td>VNS</td></tr>
         <tr><td>some desc</td><td>LCH-FCM</td><td>✓</td><td>-</td><td>✓</td></tr>
-        <tr><td>some other desc</td><td>LCH-SCM</td><td>✓</td><td>✓</td><td>-</td></tr>
+        <tr><td>some other desc</td><td>LCH-SCM</td><td>✓</td><td>✓</td><td>✓</td></tr>
       </table>
     
     assertEqual(Before(multiRowCommand).renderTable, expected)
@@ -45,11 +45,10 @@ class TestNodeRenderingSpec extends WordSpec with HtmlAssertions {
         <tr><td>Product types supported</td></tr>
         <tr><td>Description</td><td>Clearing house</td><td>Vanilla</td><td>FRA</td><td>VNS</td></tr>
         <tr><td>some desc</td><td>LCH-FCM</td><td>✓</td><td>-</td><td>✓</td></tr>
-        <tr><td>some other desc</td><td>LCH-SCM</td><td>Do the faily thing ✓</td><td>✓</td><td>-</td></tr>
+        <tr><td>some other desc</td><td>LCH-SCM</td><td>✓</td><td>✓</td><td><span class="failText">✓</span>-</td></tr>
       </table>
 
     val after = Before(multiRowCommand).execute
     assertEqual(after.renderTable, expected, "Multi 2")
-    fail()
   }
 }
