@@ -1,6 +1,7 @@
 package doc.jockey.model
 
 import scala.xml.NodeSeq
+import scala.xml.RichNodeSeq._
 
 trait TestNode {
   def cmd: JustACommand
@@ -9,7 +10,7 @@ trait TestNode {
     case some => <table><tr><td>{cmd.title}</td></tr><tr>{renderCommand}</tr>{children.map(c => <tr>{c.renderCommand}</tr>)}</table>
   }
 
-  def renderCommand = renderFrom.foldLeft(NodeSeq.Empty)((ns, r) => ns ++ r.render)
+  def renderCommand: NodeSeq = renderFrom.map(_.render).toNodeSeq
   def renderFrom: List[Result]
   def children: List[TestNode]
 }
