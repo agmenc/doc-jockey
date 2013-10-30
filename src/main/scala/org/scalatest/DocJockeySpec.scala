@@ -11,8 +11,8 @@ trait DocJockeySpec extends Suite with Assertions with BeforeAndAfterAll { thisS
 
   def specify(specTitle: String)(commands: JustACommand*) = registerDjSpec(specTitle, () => {
     val runner = DocJockeyRunner(specTitle, commands.toList)
-    assert(runner.summary.isAPass, "DocJockey test failed: " + specTitle + "\n" + runner.summary)
     writer.write(runner.output)
+    assert(runner.summary.isAPass, "DocJockey test failed: " + specTitle + "\n" + runner.summary)
   })
 
   override protected def afterAll(): Unit = writer.close()

@@ -1,16 +1,15 @@
 package doc.jockey.rendering
 
+import doc.jockey.files.FileOps
 import doc.jockey.rendering.Prettifier._
 import org.scalatest.Suite
-import scala.xml._
-import scala.reflect.io._
 import scala.Pimps._
+import scala.reflect.io._
+import scala.xml._
 
 trait HtmlAssertions { self: Suite =>
   val writer = new TestOutputWriter(self.getClass)
 
-  // TODO - CAS - 11/10/2013 - Side-by-side comparison in IntelliJ - ScalaTest IntelliJ plugin?
-  
   def assertEqual(actual: NodeSeq, expected: NodeSeq, testName: Option[String] = None) = compare(actual, expected, testName)
   def assertEqual(actual: String, expected: NodeSeq) = compare(actual, expected)
 
@@ -23,21 +22,12 @@ trait HtmlAssertions { self: Suite =>
         writer.write(s"$name.expected", expected)
       })
 
-      // TODO - CAS - 19/10/2013 - Throw an exception that IntelliJ recognises, so that it displays a side-by-side comparison of the differences
+      // TODO - CAS - 19/10/2013 - Throw an exception that IntelliJ recognises, so that it displays a side-by-side comparison of the differences. Do we need a ScalaTest IntelliJ plugin?
       assert(actual === expected)
     }
 }
 
-// TODO - CAS - 26/10/2013 - Extract all paths into an overrideable single location
-class TestOutputWriter(callingSpec: Class[_]) {
-  private val baseDir = Path(".") / "src" / "test" / "scala"
-  private val packageDir = callingSpec.getPackage.getName replaceAll ("\\.", File.separator)
-
+class TestOutputWriter(callingSpec: Class[_]) extends FileOps(callingSpec, Path(".") / "src" / "test" / "scala") {
   def write(fileName: String, contents: String): Unit = file(fileName).writeAll(contents)
-
-  // TODO - CAS - 26/10/2013 - Extract this into a common file find-or-create location
   private def file(fileName: String): File = tee((dir / fileName).toFile)(_.createFile())
-  private def dir: Directory = tee((baseDir / packageDir).toDirectory)(_.createDirectory())
-
-
 }
