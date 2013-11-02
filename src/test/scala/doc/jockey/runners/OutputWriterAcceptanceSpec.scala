@@ -2,21 +2,25 @@ package doc.jockey.runners
 
 import doc.jockey.rendering._
 import org.scalatest.WordSpec
-import scala.reflect.io._
 
 class OutputWriterAcceptanceSpec extends WordSpec with HtmlAssertions {
   class DummyClass
 
+  val defaultHeader =
+    <header>
+      <link href='../../../doc-jockey.css' rel='stylesheet' type='text/css'/>
+    </header>
+
   "Output files take their name and package from the spec class" in {
     new OutputWriter(this.getClass).close
 
-    assertEqual(File("target/doc-jockey/doc/jockey/runners/OutputWriterAcceptanceSpec.html").slurp, <html><header/><body/></html>)
+    assertEqual(xmlFromOutputFile(classOf[OutputWriterAcceptanceSpec]), <html>{defaultHeader}<body/></html>)
   }
 
   "Multiple specify() calls in one Spec class all write to the same output file" in {
     val expected =
       <html>
-        <header/>
+        {defaultHeader}
         <body>
           <p>Output of specify() one</p>
           <p>Output of specify() two</p>
@@ -28,6 +32,14 @@ class OutputWriterAcceptanceSpec extends WordSpec with HtmlAssertions {
     writer.write(<p>Output of specify() two</p>)
     writer.close
 
-    assertEqual(File("target/doc-jockey/doc/jockey/runners/DummyClass.html").slurp, expected)
+    assertEqual(xmlFromOutputFile(classOf[DummyClass]), expected)
+  }
+
+  class CssDummyClass
+
+  "CSS scripts are expected at the top of the source tree" in {
+    new OutputWriter(classOf[CssDummyClass]).close
+
+    assertContains(xmlFromOutputFile(classOf[CssDummyClass]), "link", <link href='../../../doc-jockey.css' rel='stylesheet' type='text/css'/>)
   }
 }

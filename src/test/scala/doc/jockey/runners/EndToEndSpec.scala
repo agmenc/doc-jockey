@@ -15,7 +15,7 @@ class EndToEndSpec extends WordSpec with HtmlAssertions {
 
     runSpec(new SomeDocJockeySpec)
 
-    assertEqual(outputFile.slurp(), expectedHtml)
+    assertEqual(xmlFromOutputFile(classOf[SomeDocJockeySpec]), expectedHtml)
   }
 
   class SomeDocJockeySpec extends DocJockeySpec {
@@ -44,9 +44,9 @@ class EndToEndSpec extends WordSpec with HtmlAssertions {
     def apply(event: Event) = {} // swallow
   }
 
-  val expectedHtml =
+  def expectedHtml =
     <html>
-    <header/>
+    {expectedHeader}
     <body>
       <h2>We can have a second, if fairly pointless, doc-jockey spec in the same Spec class</h2>
       <table>
@@ -67,4 +67,9 @@ class EndToEndSpec extends WordSpec with HtmlAssertions {
       </table>
     </body>
     </html>
+
+  def expectedHeader =
+    <header>
+      <link href='../../../doc-jockey.css' rel='stylesheet' type='text/css'/>
+    </header>
 }
