@@ -12,7 +12,7 @@ object FileOps {
   }
 }
 
-abstract class FileOps(caller: Class[_], baseDir: Path = provider.baseDir) {
+abstract class FileOps(caller: Class[_], baseDir: Path = provider.targetDir) {
   def file: File = tee((dir / caller.fileName).toFile)(_.createFile())
   def dir: Directory = tee((baseDir / caller.packageDir).toDirectory)(_.createDirectory())
 }

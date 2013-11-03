@@ -20,7 +20,7 @@ trait HtmlAssertions { self: Suite =>
   implicit def toOption(string: String): Option[String] = Some(string)
   
   def xmlFromOutputFile(someClass: Class[_]) = XML.loadFile(pathToOutputFile(someClass).jfile)
-  def pathToOutputFile(someClass: Class[_]) = provider.baseDir / Path(someClass.packageDir) / someClass.fileName
+  def pathToOutputFile(someClass: Class[_]) = provider.targetDir / Path(someClass.packageDir) / someClass.fileName
 
   private def compare(actual: String, expected: String, testName: Option[String] = None) =
     if (actual != expected) {

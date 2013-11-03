@@ -3,7 +3,10 @@ package doc.jockey
 import scala.reflect.io._
 
 trait Config {
-  def baseDir: Path
+  def targetDir: Path
+  def classpathResourcesDir: String
+  def testResourcesDir: String
+
   Config.provider = this
 }
 
@@ -12,5 +15,7 @@ object Config {
 }
 
 class DefaultConfig extends Config {
-  override val baseDir = Path(".") / "target" / "doc-jockey"
+  override val targetDir = Path(".") / "target" / "doc-jockey"
+  override val classpathResourcesDir = "doc-jockey"
+  override val testResourcesDir = "doc-jockey"
 }
