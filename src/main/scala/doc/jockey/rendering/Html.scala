@@ -10,7 +10,7 @@ class Html(caller: Class[_]) {
   private def html = <html>{headers}<body>@STUFF@</body></html>
   private def headers =
     <header>
-      <link href='../../../doc-jockey.css' rel='stylesheet' type='text/css'/>
+      <link href='../../../css/doc-jockey.css' rel='stylesheet' type='text/css'/>
     </header>
 
   val Seq(header, footer) = html.split("@STUFF@").toSeq

@@ -70,6 +70,6 @@ class EndToEndSpec extends WordSpec with HtmlAssertions {
 
   def expectedHeader =
     <header>
-      <link href='../../../doc-jockey.css' rel='stylesheet' type='text/css'/>
+      <link href='../../../css/doc-jockey.css' rel='stylesheet' type='text/css'/>
     </header>
 }

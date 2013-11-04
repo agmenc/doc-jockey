@@ -8,7 +8,7 @@ class OutputWriterAcceptanceSpec extends WordSpec with HtmlAssertions {
 
   val defaultHeader =
     <header>
-      <link href='../../../doc-jockey.css' rel='stylesheet' type='text/css'/>
+      <link href='../../../css/doc-jockey.css' rel='stylesheet' type='text/css'/>
     </header>
 
   "Output files take their name and package from the spec class" in {
@@ -40,6 +40,6 @@ class OutputWriterAcceptanceSpec extends WordSpec with HtmlAssertions {
   "CSS scripts are expected at the top of the source tree" in {
     new OutputWriter(classOf[CssDummyClass]).close
 
-    assertContains(xmlFromOutputFile(classOf[CssDummyClass]), "link", <link href='../../../doc-jockey.css' rel='stylesheet' type='text/css'/>)
+    assertContains(xmlFromOutputFile(classOf[CssDummyClass]), "link", <link href='../../../css/doc-jockey.css' rel='stylesheet' type='text/css'/>)
   }
 }
