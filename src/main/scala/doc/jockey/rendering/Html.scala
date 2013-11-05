@@ -1,19 +1,19 @@
 package doc.jockey.rendering
 
-import doc.jockey.rendering.Prettifier._
 import doc.jockey.files.FileOps
 import scala.reflect.io.File
 
 class Html(caller: Class[_]) {
   import FileOps._
 
-  private def html = <html>{headers}<body>@STUFF@</body></html>
-  private def headers =
+  def header =
     <header>
+      <meta charset="UTF-8"/>
       <link href='../../../css/doc-jockey.css' rel='stylesheet' type='text/css'/>
     </header>
 
-  val Seq(header, footer) = html.split("@STUFF@").toSeq
+  val Seq(top, middle, bottom) = Seq("<html>", "<body>", "</body></html>")
+
   def reversePackage = caller.packageDir.split(File.separator).map(s => "..").mkString("/")
 }
 
