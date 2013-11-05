@@ -9,12 +9,13 @@ class Html(caller: Class[_]) {
   def header =
     <header>
       <meta charset="UTF-8"/>
-      <link href='../../../css/doc-jockey.css' rel='stylesheet' type='text/css'/>
+      <link href={pathTo("css/doc-jockey.css")} rel="stylesheet" type="text/css"/>
     </header>
 
   val Seq(top, middle, bottom) = Seq("<html>", "<body>", "</body></html>")
 
-  def reversePackage = caller.packageDir.split(File.separator).map(s => "..").mkString("/")
+  private def pathTo(resource: String): String = reversePackage + File.separator + resource
+  private def reversePackage = caller.packageDir.split(File.separator).map(s => "..").mkString("/")
 }
 
 object Html {

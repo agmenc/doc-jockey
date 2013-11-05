@@ -4,7 +4,6 @@ import doc.jockey.files.FileOps
 import doc.jockey.rendering.Html
 import doc.jockey.rendering.Prettifier._
 import scala.xml._
-import scala.reflect.io.File
 
 class OutputWriter(callingSpec: Class[_]) extends FileOps(callingSpec) {
   def write(ns: NodeSeq): Unit = file.appendAll(ns)
