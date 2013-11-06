@@ -15,7 +15,7 @@ class EndToEndSpec extends WordSpec with HtmlAssertions {
 
     runSpec(new SomeDocJockeySpec)
 
-    assertEqual(xmlFromOutputFile(classOf[SomeDocJockeySpec]), expectedHtml)
+    assertEqual(xmlFromOutputFile(classOf[SomeDocJockeySpec]), expectedHtml, "EndToEnd")
   }
 
   class SomeDocJockeySpec extends DocJockeySpec {
@@ -26,7 +26,7 @@ class EndToEndSpec extends WordSpec with HtmlAssertions {
         List(Vanilla, Fra, Vns),
         List(
           Expected("some desc", LchFcm, true, false, true),
-          Expected("some other desc", LchScm, true, true, false)
+          Expected("some other desc", LchScm, true, true, true)
         )
       )
     )
@@ -48,28 +48,32 @@ class EndToEndSpec extends WordSpec with HtmlAssertions {
     <html>
       <header>
         <meta charset="UTF-8"/>
-        <link href="../../../css/doc-jockey.css" rel="stylesheet" type="text/css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link href="../../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../css/doc-jockey.css" rel="stylesheet" type="text/css"/>
       </header>
     <body>
       <h2>We can have a second, if fairly pointless, doc-jockey spec in the same Spec class</h2>
-      <table>
-        <tr><td>Computer is</td><td>on</td></tr>
+      <table class="table table-condensed table-bordered">
+        <tr><th>Computer is</th><td>on</td></tr>
       </table>
       <h2>Trade clearing engine supports correct workflows and product types</h2>
-      <table>
-        <tr><td>Computer is</td> <td>on</td></tr>
+      <table class="table table-condensed table-bordered">
+        <tr><th>Computer is</th> <td>on</td></tr>
       </table>
-      <table>
-        <tr><td>Supported clearing workflows</td> <td>LCH-FCM</td> <td>Manual, Netting</td></tr>
+      <table class="table table-condensed table-bordered">
+        <tr><th>Supported clearing workflows</th> <td>LCH-FCM</td> <td>Manual, Netting</td></tr>
       </table>
-      <table>
-        <tr><td>Product types supported</td></tr>
-        <tr><td>Description</td><td>Clearing house</td><td>Vanilla</td><td>FRA</td><td>VNS</td></tr>
-        <tr><td>some desc</td><td>LCH-FCM</td><td>✓</td><td>-</td><td>✓</td></tr>
-        <tr><td>some other desc</td><td>LCH-SCM</td><td>✓</td><td>✓</td><td>-</td></tr>
+      <table class="table table-condensed table-bordered table-striped">
+        <thead>
+          <tr><th>Product types supported</th></tr>
+          <tr><td>Description</td><td>Clearing house</td><td>Vanilla</td><td>FRA</td><td>VNS</td></tr>
+        </thead>
+        <tbody>
+          <tr><td>some desc</td><td>LCH-FCM</td><td>✓</td><td>-</td><td>✓</td></tr>
+          <tr><td>some other desc</td><td>LCH-SCM</td><td>✓</td><td>✓</td><td class="danger"><span class="failText">✓</span>-</td></tr>
+        </tbody>
       </table>
     </body>
     </html>
-
   }

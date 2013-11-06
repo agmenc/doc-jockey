@@ -6,8 +6,20 @@ import scala.xml.RichNodeSeq._
 trait TestNode {
   def cmd: JustACommand
   def renderTable: NodeSeq = children match {
-    case Nil => <table><tr><td>{cmd.title}</td>{renderCommand}</tr></table>
-    case some => <table><tr><td>{cmd.title}</td></tr><tr>{renderCommand}</tr>{children.map(c => <tr>{c.renderCommand}</tr>)}</table>
+    case Nil =>
+      <table class="table table-condensed table-bordered">
+        <tr><th>{cmd.title}</th>{renderCommand}</tr>
+      </table>
+    case some =>
+      <table class="table table-condensed table-bordered table-striped">
+        <thead>
+          <tr><th>{cmd.title}</th></tr>
+          <tr>{renderCommand}</tr>
+        </thead>
+        <tbody>
+          {children.map(c => <tr>{c.renderCommand}</tr>)}
+        </tbody>
+      </table>
   }
 
   def renderCommand: NodeSeq = renderFrom.map(_.render).toNodeSeq

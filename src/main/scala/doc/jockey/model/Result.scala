@@ -16,5 +16,5 @@ case class Pass(expected: String) extends Result {
 }
 
 case class Fail(expected: String, actual: String) extends Result {
-  def render = <td><span class="failText">{expected}</span>{actual}</td>
+  def render = <td class="danger"><span class="failText">{expected}</span>{actual}</td>
 }

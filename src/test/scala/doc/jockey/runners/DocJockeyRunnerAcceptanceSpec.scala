@@ -18,15 +18,15 @@ class DocJockeyRunnerAcceptanceSpec extends WordSpec with HtmlAssertions {
   "The runner outputs some HTML" in {
     val expected =
       <h2>Can we get some HTML?</h2> ++
-      <table>
+        <table class="table table-condensed table-bordered">
         <tr>
-          <td>Computer is</td>
+          <th>Computer is</th>
           <td>on</td>
         </tr>
       </table>
 
     val runner = DocJockeyRunner("Can we get some HTML?", testModel)
 
-    assertEqual(runner.output, expected)
+    assertEqual(runner.output, expected, "X")
   }
 }

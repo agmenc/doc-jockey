@@ -11,11 +11,11 @@ import org.scalatest.WordSpec
 class TestNodeRenderingSpec extends WordSpec with HtmlAssertions {
 
   "Single-row Befores render themselves" in {
-    assertEqual(Before(ComputerIs(true)).renderTable, <table><tr><td>Computer is</td><td>on</td></tr></table>)
+    assertEqual(Before(ComputerIs(true)).renderTable, <table class="table table-condensed table-bordered"><tr><th>Computer is</th><td>on</td></tr></table>)
   }
 
   "Single-row Afters render themselves" in {
-    assertEqual(After(ComputerIs(true), List(Fail("off", "on")), Nil).renderTable, <table><tr><td>Computer is</td><td><span class="failText">off</span>on</td></tr></table>)
+    assertEqual(After(ComputerIs(true), List(Fail("off", "on")), Nil).renderTable, <table class="table table-condensed table-bordered"><tr><th>Computer is</th><td class="danger"><span class="failText">off</span>on</td></tr></table>)
   }
 
   val multiRowCommand =
@@ -29,11 +29,15 @@ class TestNodeRenderingSpec extends WordSpec with HtmlAssertions {
 
   "Multi-row Befores render themselves" in {
     val expected =
-      <table>
-        <tr><td>Product types supported</td></tr>
-        <tr><td>Description</td><td>Clearing house</td><td>Vanilla</td><td>FRA</td><td>VNS</td></tr>
-        <tr><td>some desc</td><td>LCH-FCM</td><td>✓</td><td>-</td><td>✓</td></tr>
-        <tr><td>some other desc</td><td>LCH-SCM</td><td>✓</td><td>✓</td><td>✓</td></tr>
+      <table class="table table-condensed table-bordered table-striped">
+        <thead>
+          <tr><th>Product types supported</th></tr>
+          <tr><td>Description</td><td>Clearing house</td><td>Vanilla</td><td>FRA</td><td>VNS</td></tr>
+        </thead>
+        <tbody>
+          <tr><td>some desc</td><td>LCH-FCM</td><td>✓</td><td>-</td><td>✓</td></tr>
+          <tr><td>some other desc</td><td>LCH-SCM</td><td>✓</td><td>✓</td><td>✓</td></tr>
+        </tbody>
       </table>
     
     assertEqual(Before(multiRowCommand).renderTable, expected)
@@ -41,11 +45,15 @@ class TestNodeRenderingSpec extends WordSpec with HtmlAssertions {
 
   "Multi-row Afters render themselves" in {
     val expected =
-      <table>
-        <tr><td>Product types supported</td></tr>
-        <tr><td>Description</td><td>Clearing house</td><td>Vanilla</td><td>FRA</td><td>VNS</td></tr>
-        <tr><td>some desc</td><td>LCH-FCM</td><td>✓</td><td>-</td><td>✓</td></tr>
-        <tr><td>some other desc</td><td>LCH-SCM</td><td>✓</td><td>✓</td><td><span class="failText">✓</span>-</td></tr>
+      <table class="table table-condensed table-bordered table-striped">
+        <thead>
+          <tr><th>Product types supported</th></tr>
+          <tr><td>Description</td><td>Clearing house</td><td>Vanilla</td><td>FRA</td><td>VNS</td></tr>
+        </thead>
+        <tbody>
+          <tr><td>some desc</td><td>LCH-FCM</td><td>✓</td><td>-</td><td>✓</td></tr>
+          <tr><td>some other desc</td><td>LCH-SCM</td><td>✓</td><td>✓</td><td class="danger"><span class="failText">✓</span>-</td></tr>
+        </tbody>
       </table>
 
     val after = Before(multiRowCommand).execute
