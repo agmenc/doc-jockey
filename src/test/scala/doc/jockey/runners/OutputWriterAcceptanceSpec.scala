@@ -10,7 +10,7 @@ class OutputWriterAcceptanceSpec extends WordSpec with HtmlAssertions {
   "Output files take their name and package from the spec class" in {
     new OutputWriter(this.getClass).close()
 
-    assertEqual(xmlFromOutputFile(classOf[OutputWriterAcceptanceSpec]), <html>{headerFor(classOf[OutputWriterAcceptanceSpec])}<body/></html>)
+    assertEqual(xmlFromOutputFile(classOf[OutputWriterAcceptanceSpec]), <html>{headerFor(classOf[OutputWriterAcceptanceSpec])}<body><div class="container"/></body></html>)
   }
 
   "Multiple specify() calls in one Spec class all write to the same output file" in {
@@ -18,8 +18,10 @@ class OutputWriterAcceptanceSpec extends WordSpec with HtmlAssertions {
       <html>
         {headerFor(classOf[DummyClass])}
         <body>
-          <p>Output of specify() one</p>
-          <p>Output of specify() two</p>
+          <div class="container">
+            <p>Output of specify() one</p>
+            <p>Output of specify() two</p>
+          </div>
         </body>
       </html>
 
