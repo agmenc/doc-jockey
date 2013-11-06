@@ -9,7 +9,7 @@ class WebResourceCopierSpec extends WordSpec {
     someResource.deleteIfExists()
     assert(!someResource.exists, s"$someResource was not deleted")
 
-    new WebResourceCopier(provider.classpathResourcesDir, provider.targetDir, "css/some.css")
+    new WebResourceCopier(provider.classpathResourcesDir, provider.targetDir).copyClasspathResources("css/some.css")
 
     assert(someResource.exists, s"$someResource not found")
     assert(someResource.slurp().contains("\n/*Hello*/\n\n/*Goodbye*/\n\n"), s"$someResource did not contain expected text. Contents: [${someResource.slurp()}]")

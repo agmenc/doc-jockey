@@ -48,7 +48,8 @@ class EndToEndSpec extends WordSpec with HtmlAssertions {
     <html>
       <header>
         <meta charset="UTF-8"/>
-        <link href='../../../css/doc-jockey.css' rel='stylesheet' type='text/css'/>
+        <link href="../../../css/doc-jockey.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
       </header>
     <body>
       <h2>We can have a second, if fairly pointless, doc-jockey spec in the same Spec class</h2>

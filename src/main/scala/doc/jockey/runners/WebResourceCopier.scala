@@ -7,12 +7,11 @@ import scala.Pimps._
 import scala.reflect.io.Path
 
 object WebResourceCopier {
-  def copy(sources: String*) = new WebResourceCopier(provider.classpathResourcesDir, provider.targetDir, sources:_*)
-
-  copy("css/doc-jockey.css")
+  val copier = new WebResourceCopier(provider.classpathResourcesDir, provider.targetDir)
+  copier.copyClasspathResources("css/doc-jockey.css")
 }
 
-class WebResourceCopier(resourcesDir: String, targetDir: Path, sources: String*) {
+class WebResourceCopier(resourcesDir: String, targetDir: Path) {
   private def url(source: String): Option[URL] = Option(getClass.getClassLoader.getResource(resourcesDir + File.separator + source))
   private def target(source: String) = tee(targetDir / source)(_.parent.toDirectory.createDirectory())
 
@@ -24,8 +23,9 @@ class WebResourceCopier(resourcesDir: String, targetDir: Path, sources: String*)
     printer.close()
   }
 
-  for {
-    source <- sources
-    sourceUrl <- url(source)
-  } copyText(sourceUrl.openStream(), target(source).toFile.bufferedOutput())
+  def copyClasspathResources(classpathResources: String*) =
+    for {
+      source <- classpathResources
+      sourceUrl <- url(source)
+    } copyText(sourceUrl.openStream(), target(source).toFile.bufferedOutput())
 }
