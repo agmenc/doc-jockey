@@ -10,6 +10,7 @@ class Html(caller: Class[_]) {
     <header>
       <meta charset="UTF-8"/>
       <link href={pathTo("css/doc-jockey.css")} rel="stylesheet" type="text/css"/>
+      <link href={pathTo("css/bootstrap.min.css")} rel="stylesheet" type="text/css"/>
     </header>
 
   val Seq(top, middle, bottom) = Seq("<html>", "<body>", "</body></html>")

@@ -8,7 +8,7 @@ import scala.reflect.io.Path
 
 object WebResourceCopier {
   val copier = new WebResourceCopier(provider.classpathResourcesDir, provider.targetDir)
-  copier.copyClasspathResources("css/doc-jockey.css")
+  copier.copyClasspathResources("css/doc-jockey.css", "css/bootstrap.min.css")
 }
 
 class WebResourceCopier(resourcesDir: String, targetDir: Path) {
