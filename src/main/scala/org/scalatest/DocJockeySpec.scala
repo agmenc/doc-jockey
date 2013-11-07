@@ -39,6 +39,6 @@ trait DocJockeySpec extends Suite with Assertions with BeforeAndAfterAll { thisS
       )
     }
 
-    runTestImpl(thisSuite, testName, reporter, stopper, configMap, tracker, true, invokeWithFixture)
+    runTestImpl(thisSuite, testName, reporter, stopper, configMap, tracker, includeIcon = true, invokeWithFixture)
   }
 }

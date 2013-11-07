@@ -1,3 +1,4 @@
 .failText { text-decoration-style: dashed; color: red }
 .table { width: auto; }
-thead td { font-weight: bold; }
+thead td { font-weight: bold; background-color: #f5f5f5; }
+.container { margin-top: 10px }

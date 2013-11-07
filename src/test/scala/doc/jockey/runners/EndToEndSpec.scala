@@ -54,11 +54,15 @@ class EndToEndSpec extends WordSpec with HtmlAssertions {
       </header>
     <body>
       <div class="container">
-        <h2>We can have a second, if fairly pointless, doc-jockey spec in the same Spec class</h2>
+        <div class="well well-lg">
+          <h3>We can have a second, if fairly pointless, doc-jockey spec in the same Spec class</h3>
+        </div>
         <table class="table table-condensed table-bordered">
           <tr><th>Computer is</th><td>on</td></tr>
         </table>
-        <h2>Trade clearing engine supports correct workflows and product types</h2>
+        <div class="well well-lg">
+          <h3>Trade clearing engine supports correct workflows and product types</h3>
+        </div>
         <table class="table table-condensed table-bordered">
           <tr><th>Computer is</th> <td>on</td></tr>
         </table>
