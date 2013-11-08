@@ -1,5 +1,6 @@
 .expectedText { text-decoration: line-through }
 .actualText { color: red }
 .table { width: auto; }
-thead td { font-weight: bold; background-color: #f5f5f5; }
+thead td { font-weight: bold; background-color: #CCCCCC; }
+td, th { background-color: #ffffff; }
 .container { margin-top: 10px }
