@@ -12,9 +12,9 @@ case class Setup(expected: String) extends Result {
 }
 
 case class Pass(expected: String) extends Result {
-  def render = <td>{expected}</td>
+  def render = <td class="success">{expected}</td>
 }
 
 case class Fail(expected: String, actual: String) extends Result {
-  def render = <td class="danger"><span class="failText">{expected}</span>{actual}</td>
+  def render = <td class="danger"><span class="expectedText">{expected}</span><span class="actualText">{actual}</span></td>
 }

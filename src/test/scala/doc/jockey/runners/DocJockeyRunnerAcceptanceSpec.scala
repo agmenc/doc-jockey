@@ -23,7 +23,7 @@ class DocJockeyRunnerAcceptanceSpec extends WordSpec with HtmlAssertions {
       <table class="table table-condensed table-bordered">
         <tr>
           <th>Computer is</th>
-          <td>on</td>
+          <td class="success">on</td>
         </tr>
       </table>
 

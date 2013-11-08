@@ -11,7 +11,7 @@ trait TestNode {
         <tr><th>{cmd.title}</th>{renderCommand}</tr>
       </table>
     case some =>
-      <table class="table table-condensed table-bordered table-striped">
+      <table class="table table-condensed table-bordered">
         <thead>
           <tr><th>{cmd.title}</th></tr>
           <tr>{renderCommand}</tr>

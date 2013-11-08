@@ -58,25 +58,25 @@ class EndToEndSpec extends WordSpec with HtmlAssertions {
           <h3>We can have a second, if fairly pointless, doc-jockey spec in the same Spec class</h3>
         </div>
         <table class="table table-condensed table-bordered">
-          <tr><th>Computer is</th><td>on</td></tr>
+          <tr><th>Computer is</th><td class="success">on</td></tr>
         </table>
         <div class="well well-lg">
           <h3>Trade clearing engine supports correct workflows and product types</h3>
         </div>
         <table class="table table-condensed table-bordered">
-          <tr><th>Computer is</th> <td>on</td></tr>
+          <tr><th>Computer is</th><td class="success">on</td></tr>
         </table>
         <table class="table table-condensed table-bordered">
-          <tr><th>Supported clearing workflows</th> <td>LCH-FCM</td> <td>Manual, Netting</td></tr>
+          <tr><th>Supported clearing workflows</th> <td>LCH-FCM</td><td class="success">Manual, Netting</td></tr>
         </table>
-        <table class="table table-condensed table-bordered table-striped">
+        <table class="table table-condensed table-bordered">
           <thead>
             <tr><th>Product types supported</th></tr>
             <tr><td>Description</td><td>Clearing house</td><td>Vanilla</td><td>FRA</td><td>VNS</td></tr>
           </thead>
           <tbody>
-            <tr><td>some desc</td><td>LCH-FCM</td><td>✓</td><td>-</td><td>✓</td></tr>
-            <tr><td>some other desc</td><td>LCH-SCM</td><td>✓</td><td>✓</td><td class="danger"><span class="failText">✓</span>-</td></tr>
+            <tr><td>some desc</td><td>LCH-FCM</td><td class="success">✓</td><td class="success">-</td><td class="success">✓</td></tr>
+            <tr><td>some other desc</td><td>LCH-SCM</td><td class="success">✓</td><td class="success">✓</td><td class="danger"><span class="expectedText">✓</span><span class="actualText">-</span></td></tr>
           </tbody>
         </table>
       </div>
