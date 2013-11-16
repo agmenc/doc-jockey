@@ -1,13 +1,13 @@
 package doc.jockey.runners
 
 import doc.jockey.rendering.HtmlAssertions
+import doc.jockey.runners.scalatest.ScalaTestManipulation
 import example.project.fixture.SupportedProductTypes.Expected
 import example.project.fixture._
 import example.project.main._
 import org.scalatest._
-import org.scalatest.events.Event
 
-class EndToEndSpec extends WordSpec with HtmlAssertions {
+class EndToEndSpec extends WordSpec with HtmlAssertions with ScalaTestManipulation {
   "We can run a spec in a different class, and check the output file" in {
     val outputFile = new OutputWriter(classOf[SomeDocJockeySpec]).file
     outputFile.deleteIfExists()
@@ -34,14 +34,6 @@ class EndToEndSpec extends WordSpec with HtmlAssertions {
     specify("We can have a second, if fairly pointless, doc-jockey spec in the same Spec class")(
       ComputerIs(true)
     )
-  }
-
-  def runSpec(spec: EndToEndSpec.this.type#SomeDocJockeySpec) {
-    spec.run(None, new VeryQuietReporter(), new Stopper() {}, new Filter(None, Set.empty), Map(), None, new Tracker())
-  }
-
-  class VeryQuietReporter extends Reporter {
-    def apply(event: Event) = {} // swallow
   }
 
   def expectedHtml =
