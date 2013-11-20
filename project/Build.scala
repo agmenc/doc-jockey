@@ -6,6 +6,7 @@ object Build extends Build {
   def sharedSettings = Seq(
     scalaVersion:= "2.10.2",
     scalacOptions += "-deprecation",
+    testOptions in Test += Tests.Argument("-oF"),
     libraryDependencies ++= {
       Seq(
         "junit" % "junit" % "4.8" % "test->default",
