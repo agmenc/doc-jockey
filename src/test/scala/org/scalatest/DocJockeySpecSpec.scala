@@ -1,14 +1,14 @@
 package org.scalatest
 
 import doc.jockey.runners.scalatest.ScalaTestManipulation
-import example.project.specs.sandbox.hole.SandboxedExampleSpec
 import org.scalatest.mock.MockitoSugar
 import org.mockito.Mockito._
 import org.mockito.Matchers._
+import example.project.specs.sandbox.hole.Hider
 
 class DocJockeySpecSpec extends WordSpec with ScalaTestManipulation with MockitoSugar {
   "Tests nested anywhere inside the sandbox folder are ignored" in {
-    val spec = new SandboxedExampleSpec
+    val spec = new Hider.SandboxedExampleSpec
 
     runSpec(spec)
 
@@ -21,5 +21,5 @@ trait MockJockeySpec extends DocJockeySpec with MockitoSugar {
   private[scalatest] override val engine = mock[EngineDriver]
   def exposedEngine = engine
 
-  when(engine.testNames).thenReturn(Set("1", "2"))
+  when(engine.testNames).thenReturn(Set("whatever"))
 }
