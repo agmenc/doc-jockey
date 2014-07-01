@@ -2,11 +2,12 @@ package doc.jockey.horse
 
 import org.scalatest.WordSpec
 
-
 // Renders the test result (pre- vs Option(post-)) in some display format
-trait TestDisplay
-trait Html extends TestDisplay
-trait Text extends TestDisplay
+trait DisplayContext {
+  // Output format?
+}
+case object Html extends DisplayContext
+case object Text extends DisplayContext
 
 // Displays the result of individual Concepts
-trait ConceptDisplay[Shape, TestDisplayType]
+trait Display[T, Context <: DisplayContext]

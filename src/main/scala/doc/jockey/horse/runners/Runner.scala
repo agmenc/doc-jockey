@@ -1,4 +1,4 @@
-package doc.jockey.horse
+package doc.jockey.horse.runners
 
 //
 trait Runner
