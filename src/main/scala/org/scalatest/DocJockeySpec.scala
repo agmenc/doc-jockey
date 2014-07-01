@@ -5,7 +5,7 @@ import doc.jockey.runners._
 
 trait DocJockeySpec extends Suite with Assertions with BeforeAndAfterAll { thisSuite =>
   private[scalatest] val writer = new OutputWriter(this.getClass)
-  private[scalatest] val engine: EngineDriver = new EngineDriver {}
+  private[scalatest] val engine: EngineDriver = new EngineDriver
 
   def specify(specTitle: String)(commands: JustACommand*) = {
     val testFun = () => {
@@ -42,7 +42,7 @@ trait DocJockeySpec extends Suite with Assertions with BeforeAndAfterAll { thisS
   }
 }
 
-trait EngineDriver {
+class EngineDriver {
   private[scalatest] val engine = new Engine("DjSpecMod", "DjSpec")
   type TestLeaf = engine.TestLeaf
 
