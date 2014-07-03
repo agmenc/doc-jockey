@@ -6,7 +6,9 @@ import Test._
 // Aggregates disparate data sources, finds the appropriate Concepts and sends the results to a display
 case class Test[DC<:DisplayContext](title: String, testDisplay: DC, actionsAndAssertions: Binding[_, DC]*) {
   // We could diff pre- and post- Bindings, and only show the diffs .... allows us to group all failures in one short output
-  lazy val execute: Seq[(Binding[_, DC], Binding[_, DC])] = Nil
+  lazy val execute = actionsAndAssertions map {
+    case b @ Binding(data, concept, display) => b -> Binding(concept.process(data), concept, display)
+  }
 }
 
 object Test {

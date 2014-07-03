@@ -1,7 +1,5 @@
 package doc.jockey.horse
 
-import org.scalatest.WordSpec
-
 // Renders the test result (pre- vs Option(post-)) in some display format
 trait DisplayContext {
   // Output format?

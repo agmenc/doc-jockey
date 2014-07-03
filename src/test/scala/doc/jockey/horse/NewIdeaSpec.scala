@@ -13,17 +13,26 @@ class NewIdeaSpec extends WordSpec with MustMatchers {
   "We can execute a populated test" in {
     import Test._
 
-    class MultiplicationEngine[T] extends Concept[T] {
-      def process(data: T): T = ???
+    class MultiplicationEngine extends Concept[Seq[Int]] {
+      override def process(data: Seq[Int]) = {
+        val inputs = data.take(data.size - 1).toList
+        val output = inputs.foldLeft(1)((acc, v) => acc * v)
+        (output :: (inputs reverse)).reverse
+      }
     }
 
-    class LinearHtmlDisplay extends Display[Seq[_], Html.type]
+    // // TODO - CAS - 03/07/2014 - This should be able to display Seq[Any], instead of being forced to be Seq[Int]
+    class LinearHtmlDisplay extends Display[Seq[Int], Html.type]
 
-    val expected = Binding(Seq(4, 5, 6, 120), new MultiplicationEngine[Seq[_]], new LinearHtmlDisplay)
+    val concept = new MultiplicationEngine
+    val display = new LinearHtmlDisplay
+
+    val expected = Binding(Seq(4, 5, 6, 42), concept, display)
+    val actual = Binding(Seq(4, 5, 6, 120), concept, display)
 
     val test = Test("Bootstrap", Html, expected)
 
-    assert(test.execute === Seq(expected -> expected))
+    assert(test.execute === Seq(expected -> actual))
   }
 
   // We can build many test instances from source data
