@@ -3,24 +3,26 @@ package doc.jockey.horse
 // Tests are also data
 // Aggregates disparate data sources, finds the appropriate Concepts and sends the results to a display
 // We could diff pre- and post- Bindings, and only show the diffs .... allows us to group all failures in one short output
-case class Test[DC<:DisplayContext](title: String, actionsAndAssertions: Binding[_, DC]*) {
+case class Test[S<:Shape](title: String, actionsAndAssertions: Binding[_, S]*) {
   def execute = TestResult(title, actionsAndAssertions:_*)(processBindings:_*)
 
   private def processBindings = actionsAndAssertions map {
     case b @ Binding(data, concept, display) => Binding(concept.process(data), concept, display)
   }
 
-  def display(context: DC) = <html><body>Monkeys</body></html>
-  def displayExecuted(context: DC) = ???
+  def display(context: DisplayContext) = <html><body>Monkeys</body></html>
+  def displayExecuted(context: S) = ???
 }
 
 // Extends Test??
-case class TestResult[DC<:DisplayContext](title: String, actionsAndAssertions: Binding[_, DC]*)(results: Binding[_, DC]*)
+case class TestResult[S<:Shape](title: String, actionsAndAssertions: Binding[_, S]*)(results: Binding[_, S]*)
 
-case class Binding[T, DC<:DisplayContext](data: T, concept: Concept[T], display: Display[T, DC])
+case class Binding[T, S<:Shape](data: T, concept: Concept[T], shape: S)
 
 
-  // A binding needs no context to be executable - data + concept = executable
+
+  // ===> Shapes ===> A binding needs no context to be executable - data + concept = executable
+
 
 
 

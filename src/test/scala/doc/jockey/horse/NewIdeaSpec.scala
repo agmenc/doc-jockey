@@ -20,24 +20,23 @@ class NewIdeaSpec extends WordSpec with MustMatchers {
     }
   }
 
-  // TODO - CAS - 03/07/2014 - This should be able to display Seq[Any], instead of being forced to be Seq[Int]
-  class LinearHtmlDisplay extends Display[Seq[Int], Html.type]
+  class LinearTable extends Shape
 
   "We can execute a populated test" in {
     val concept = new MultiplicationEngine
-    val display = new LinearHtmlDisplay
+    val linearTable = new LinearTable
 
-    val input = Binding(Seq(4, 5, 6, 42), concept, display)
-    val output = Binding(Seq(4, 5, 6, 120), concept, display)
+    val input = Binding(Seq(4, 5, 6, 42), concept, linearTable)
+    val output = Binding(Seq(4, 5, 6, 120), concept, linearTable)
 
     assert(Test("Bootstrap", input).execute === TestResult("Bootstrap", input)(output))
   }
 
   "We can display a test before it is executed" in {
     val concept = new MultiplicationEngine
-    val display = new LinearHtmlDisplay
+    val linearTable = new LinearTable
 
-    val expected = Binding(Seq(4, 5, 6, 42), concept, display)
+    val expected = Binding(Seq(4, 5, 6, 42), concept, linearTable)
 
     assert(Test("Bootstrap", expected).display(Html) === <html><body>Monkeys</body></html>)
   }

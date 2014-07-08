@@ -7,5 +7,11 @@ trait DisplayContext {
 case object Html extends DisplayContext
 case object Text extends DisplayContext
 
+
+
+trait Shape
+trait RightwardsTree extends Shape
+
+
 // Displays the result of individual Concepts
 trait Display[T, Context <: DisplayContext]
