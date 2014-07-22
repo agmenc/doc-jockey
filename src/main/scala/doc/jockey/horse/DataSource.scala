@@ -5,11 +5,15 @@ package doc.jockey.horse
 // Data may come from different data sources, e.g. CSV, XML, HTML, case classes, etc
 // Is data just a pimp for ordinary collection types?
 trait DataSource[T] {
-  def provide: T
+  def read: T
+}
+
+trait DataSink[T] {
+  def write(data: T): T
 }
 
 case class Static[T](data: T) extends DataSource[T] {
-  override def provide = data
+  override def read = data
 }
 
 // Mixins for remote datasources?

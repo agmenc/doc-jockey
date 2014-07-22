@@ -4,7 +4,7 @@ package doc.jockey.horse
 // Aggregates disparate data sources, finds the appropriate Concepts and sends the results to a display
 // We could diff pre- and post- Bindings, and only show the diffs .... allows us to group all failures in one short output
 case class Test[S<:Shape](title: String, actionsAndAssertions: Binding[_, S]*) {
-  def execute = TestResult(title, actionsAndAssertions:_*)(processBindings:_*)
+  def execute = TestResult(title, actionsAndAssertions, processBindings)
 
   private def processBindings = actionsAndAssertions map {
     case b @ Binding(data, concept, display) => Binding(concept.process(data), concept, display)
@@ -15,7 +15,7 @@ case class Test[S<:Shape](title: String, actionsAndAssertions: Binding[_, S]*) {
 }
 
 // Extends Test??
-case class TestResult[S<:Shape](title: String, actionsAndAssertions: Binding[_, S]*)(results: Binding[_, S]*)
+case class TestResult[S<:Shape](title: String, actionsAndAssertions: Seq[Binding[_, S]], results: Seq[Binding[_, S]])
 
 case class Binding[T, S<:Shape](data: T, concept: Concept[T], shape: S)
 
