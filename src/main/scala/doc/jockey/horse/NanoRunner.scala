@@ -3,6 +3,7 @@ package doc.jockey.horse
 import fi.iki.elonen._
 import fi.iki.elonen.NanoHTTPD._
 import java.io.File
+import doc.jockey.horse.pages.Index
 
 class NanoRunner(host: String, port: Int, root: File) extends SimpleWebServer("0.0.0.0", port, root, false) {
   override def serve(session: IHTTPSession): Response = {
@@ -12,11 +13,11 @@ class NanoRunner(host: String, port: Int, root: File) extends SimpleWebServer("0
   }
 
   def respond: PartialFunction[String, Response] = {
-    case "/monkeys" => new Response("You have found monkeys")
+    case "/" => new Response(Index.byteses)
   }
 }
 
 object NanoRunner extends App {
-  new NanoRunner("0.0.0.0", 8080, new File("src/main/webapp")).start()
+  new NanoRunner("0.0.0.0", 8080, new File("./src/main/resources")).start()
   System.in.read
 }

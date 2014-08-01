@@ -45,6 +45,7 @@ class NewIdeaSpec extends WordSpec with MustMatchers {
 
 
   Principle     A design schematic should have a spatial link to the system under design
+  Principle     A design schematic is better than a TODO list
   Principle     Specs should help a user visualise how a system works, so they can reason about it
   Insight
   Yes/No test
@@ -85,6 +86,16 @@ class NewIdeaSpec extends WordSpec with MustMatchers {
 
 
   // Now go and write a little app so we can start at the beginning of the workflow
+  /* Tasks:
+        Represent a test as data, describing several bindings (datasource to concept to display)
+            [testlet handle], [Display], [DataSource identifier]:[param(s)]
+
+        Represent some simple datasource
+            Ticker, Name, Buy, Sell, Max, Min, #, Mkt Cap
+
+        Display a test in the webapp
+        Run the test from the webapp
+  */
 
 
   // Test: we can build many test instances from source data

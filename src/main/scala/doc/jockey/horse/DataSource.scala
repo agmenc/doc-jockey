@@ -6,14 +6,12 @@ package doc.jockey.horse
 // Is data just a pimp for ordinary collection types?
 trait DataSource[T] {
   def read: T
-}
-
-trait DataSink[T] {
-  def write(data: T): T
+  def write(data: T): DataSource[T]
 }
 
 case class Static[T](data: T) extends DataSource[T] {
   override def read = data
+  override def write(data: T) = Static(data)
 }
 
 // Mixins for remote datasources?
