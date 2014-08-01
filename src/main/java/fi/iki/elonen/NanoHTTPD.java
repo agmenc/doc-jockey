@@ -817,7 +817,7 @@ public abstract class NanoHTTPD {
 
         InputStream getInputStream();
 
-        CookieHandler getCookies();
+//        CookieHandler getCookies();
 
         /**
          * Adds the files in the request body to the files map.
@@ -1305,7 +1305,7 @@ public abstract class NanoHTTPD {
             return inputStream;
         }
 
-        @Override
+//        @Override
         public CookieHandler getCookies() {
             return cookies;
         }
