@@ -1,5 +1,9 @@
 package fi.iki.elonen;
 
+import fi.iki.elonen.core.IHTTPSession;
+import fi.iki.elonen.core.NanoHTTPD;
+import fi.iki.elonen.core.Response;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FilenameFilter;

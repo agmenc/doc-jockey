@@ -3,7 +3,8 @@ package fi.iki.elonen;
 import java.io.File;
 import java.util.Map;
 
-import fi.iki.elonen.NanoHTTPD.IHTTPSession;
+import fi.iki.elonen.core.IHTTPSession;
+import fi.iki.elonen.core.Response;
 
 /**
 * @author Paul S. Hawke (paul.hawke@gmail.com)
@@ -15,5 +16,5 @@ public interface WebServerPlugin {
 
     boolean canServeUri(String uri, File rootDir);
 
-    NanoHTTPD.Response serveFile(String uri, Map<String, String> headers, IHTTPSession session, File file, String mimeType);
+    Response serveFile(String uri, Map<String, String> headers, IHTTPSession session, File file, String mimeType);
 }

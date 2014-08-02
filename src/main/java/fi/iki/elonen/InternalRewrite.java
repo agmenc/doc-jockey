@@ -1,8 +1,8 @@
 package fi.iki.elonen;
 
-import java.util.Map;
+import fi.iki.elonen.core.Response;
 
-import static fi.iki.elonen.NanoHTTPD.Response;
+import java.util.Map;
 
 /**
  * @author Paul S. Hawke (paul.hawke@gmail.com)

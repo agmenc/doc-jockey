@@ -1,5 +1,7 @@
 package fi.iki.elonen;
 
+import fi.iki.elonen.core.NanoHTTPD;
+
 import java.io.IOException;
 
 public class ServerRunner {
