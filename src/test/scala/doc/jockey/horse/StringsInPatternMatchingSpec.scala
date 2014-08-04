@@ -4,28 +4,13 @@ import org.scalatest.WordSpec
 
 class StringsInPatternMatchingSpec extends WordSpec {
 
-  implicit class MySContext(val sc: StringContext) {
-    // this will not work, because the compiler thinks that s is special
-    case class s(args: Any*) {
-      def unapplySeq(s: String): Option[Seq[String]] = {
-        val regexp = sc.parts.mkString("(.+)").r
-        regexp.unapplySeq(s)
-      }
-    }
-
-    object url {
-      def unapplySeq(s: String): Option[Seq[String]] = {
-        val regexp = sc.parts.mkString("(.+)").r
-        regexp.unapplySeq(s)
-      }
-    }
-
-    val url2 = sc.parts.mkString("(.+)").r
+  implicit class PatternMatchableUrlAdapter(val sc: StringContext) {
+    val url = sc.parts.mkString("(.+)").r
   }
 
   "We can pattern match in interpolated Strings" in {
     def matcher: PartialFunction[String, String] = {
-      case url2"this ${a} is a simple ${b}" => s"Matched: $a, $b"
+      case url"this ${a} is a simple ${b}" => s"Matched: $a, $b"
       case url"/dj/$a/$b" => s"Matched: $a, $b"
       case x => "Did not match anything"
     }
